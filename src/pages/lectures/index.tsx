@@ -3,6 +3,10 @@ import {Text, View} from "react-native";
 
 export class LecturePage extends Component {
 
+  componentWillUpdate(nextProps: Readonly<{}>, nextState: Readonly<{}>, nextContext: any): void {
+    console.log("aa");
+  }
+
   render = () => {
 
     return (

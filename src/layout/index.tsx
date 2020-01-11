@@ -2,6 +2,8 @@ import React from 'react';
 import {createAppContainer} from "react-navigation";
 import {CreateStackNavigator} from "../routes/stack-navigator";
 import {LecturePage} from "../pages/lectures";
+import {SideMenuComponent} from "./side-menu";
+import SideMenu from 'react-native-side-menu';
 
 const getAppContainer = () => (
   createAppContainer(CreateStackNavigator([
@@ -11,10 +13,13 @@ const getAppContainer = () => (
 
 export const Layout = () => {
 
+  const menu = <SideMenuComponent />;
   const AppContainer = getAppContainer();
 
   return (
-    <AppContainer/>
+    <SideMenu menu={menu} isOpen={true}>
+      <AppContainer/>
+    </SideMenu>
   );
 
 };
