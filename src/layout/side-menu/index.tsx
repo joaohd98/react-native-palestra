@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import {SideMenuComponentStyles} from "./styles";
 import {TouchableOpacity} from "react-native";
+import {DrawerContentComponentProps} from "react-navigation-drawer/lib/typescript/src/types";
 
-export class SideMenuComponent extends Component {
+export class SideMenuComponent extends Component<DrawerContentComponentProps> {
 
   render = () => {
-    
+
     const {
       View,
       ViewIcon,

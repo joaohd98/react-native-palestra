@@ -1,3 +1,6 @@
 export const Routes = {
-  lectures: "LecturesPage",
+  lectures: "LecturePage",
+  lecturesDetails: "LectureDetailsPage",
+  lectureSubscription: "LectureSubscriptionPage",
+  mySubscriptions: "MySubscriptionsPage",
 };

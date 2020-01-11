@@ -1,25 +1,23 @@
 import React from 'react';
 import {createAppContainer} from "react-navigation";
-import {CreateStackNavigator} from "../routes/stack-navigator";
-import {LecturePage} from "../pages/lectures";
+import {CreateDrawerNavigator} from "../routes/drawer-navigator";
 import {SideMenuComponent} from "./side-menu";
-import SideMenu from 'react-native-side-menu';
-
-const getAppContainer = () => (
-  createAppContainer(CreateStackNavigator([
-    LecturePage
-  ]))
-);
+import {LecturePage} from "../pages/lectures/view";
+import {LectureDetailsPage} from "../pages/lectures/sub-views/details";
+import {LectureSubscriptionPage} from "../pages/lectures/sub-views/realize-subscription";
+import {MySubscriptionsPage} from "../pages/my-subscriptions/view";
 
 export const Layout = () => {
 
-  const menu = <SideMenuComponent />;
-  const AppContainer = getAppContainer();
+  const drawerNavigator = CreateDrawerNavigator( [
+    LecturePage,
+    LectureDetailsPage,
+    LectureSubscriptionPage,
+    MySubscriptionsPage,
+  ], SideMenuComponent);
 
-  return (
-    <SideMenu menu={menu} isOpen={true}>
-      <AppContainer/>
-    </SideMenu>
-  );
+  const Layout = createAppContainer(drawerNavigator);
+
+  return <Layout/>;
 
 };
