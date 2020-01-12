@@ -33,6 +33,7 @@ export class LecturesPageCard extends Component<Props> {
       lectureDate,
       lectureHour,
       lectureVacancies,
+      soldOut,
       seeMore,
     } = LecturesPageCardConst;
 
@@ -54,7 +55,7 @@ export class LecturesPageCard extends Component<Props> {
               </CardText>
             </CardDateHour>
             <CardFooterContent>
-              <CardText>{ lectureVacancies } {lecture.QtdVagasDisponiveis}</CardText>
+              <CardText>{ lectureVacancies } {lecture.QtdVagasDisponiveis > 0 ? lecture.QtdVagasDisponiveis : soldOut }</CardText>
               <CardFooterButton>
                 <CardFooterText>{ seeMore }</CardFooterText>
               </CardFooterButton>
