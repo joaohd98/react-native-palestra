@@ -9,6 +9,7 @@ import {LecturesPageWarningMessage} from "./components/warning-message";
 import {Container} from "../../../theme/components";
 import {LecturesPageHeader} from "./components/header";
 import {LecturesPageModel} from "./model";
+import {LecturesPageList} from "./components/list";
 
 export class Lecture extends Component<LecturesPageModel.Props> {
 
@@ -41,13 +42,13 @@ export class Lecture extends Component<LecturesPageModel.Props> {
       [ServiceStatus.loading]:  <View/>,
       [ServiceStatus.noInternetConnection]: this.getLectureWarningComponent(),
       [ServiceStatus.exception]: this.getLectureWarningComponent(),
-      [ServiceStatus.success]: <View/>,
+      [ServiceStatus.success]: <LecturesPageList lectures={lectures!} types={lecturesTypes!} selectedType={lectureTypeSelected!} />,
       [ServiceStatus.noAction]: <View/>,
     };
 
     return (
       <Container>
-        { this.getLectureWarningComponent() }
+        { getElement[status!] }
       </Container>
     )
 

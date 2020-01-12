@@ -1,26 +1,26 @@
 export interface LectureResponseModel {
-  codigo: number,
-  codigoTipoCategoria: number,
-  imagem: string,
-  titulo: string,
-  palestrante: string,
-  descricao: string,
-  data: string,
-  hora: string,
-  qtdVagasDisponiveis: number
+  Codigo: number,
+  CodigoTipoCategoria: number,
+  Imagem: string,
+  Titulo: string,
+  Palestrante: string,
+  Descricao: string,
+  Data: string,
+  Hora: string,
+  QtdVagasDisponiveis: number
 }
 
 export interface LectureTypeResponseModel {
-  codigo: number,
-  descricao: string
+  Codigo: number,
+  Descricao: string
 }
 
 export interface LectureSubscribeRequestModel {
-  codigoPalestra: number,
-  nome: string,
-  email: string,
-  empresa: string,
-  cargo: string,
+  CodigoPalestra: number,
+  Nome: string,
+  Email: string,
+  Empresa: string,
+  Cargo: string,
 }
 
 export interface LectureSubscribeResponseModel {
