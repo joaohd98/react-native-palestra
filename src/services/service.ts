@@ -1,6 +1,11 @@
 import {ServiceResponse, ServiceStatus} from './model';
+import Config from "react-native-config";
 
 export class Service {
+
+  static getUrl = (path: string) => {
+    return Config.API_URL + path;
+  };
 
   static makeGetRequest  = async <Response, Request = null>(url: string, parameters: Request, header: HeadersInit_ = {}): Promise<ServiceResponse<Response>> => {
 
