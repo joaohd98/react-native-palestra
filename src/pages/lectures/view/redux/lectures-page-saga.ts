@@ -3,6 +3,7 @@ import {LecturesPageAction, LecturesPageActionConst} from "./lectures-page-actio
 import {LecturesService} from "../../../../services/lectures/service";
 import {ServiceResponse, ServiceStatus} from "../../../../services/model";
 import {LectureResponseModel, LectureTypeResponseModel} from "../../../../services/lectures/model";
+import {SideMenuAction} from "../../../../layout/side-menu/redux/side-menu-action";
 
 function *getLecturesAndTypes() {
 
@@ -15,6 +16,9 @@ function *getLecturesAndTypes() {
     status: lectures.status == types.status && lectures.status == ServiceStatus.success ? ServiceStatus.success : ServiceStatus.exception,
     response: {lectures: lectures.response!, types: types.response!}
   };
+
+  if(types.response)
+    yield put(SideMenuAction.setType(types.response));
 
   yield put(LecturesPageAction.setLecturesTypes(result));
 

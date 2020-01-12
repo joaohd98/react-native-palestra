@@ -1,7 +1,7 @@
 import React from 'react';
 import {createAppContainer} from "react-navigation";
 import {CreateDrawerNavigator} from "../routes/drawer-navigator";
-import {SideMenuComponent} from "./side-menu";
+import {SideMenu} from "./side-menu";
 import {LecturePage} from "../pages/lectures/view";
 import {LectureDetailsPage} from "../pages/lectures/sub-views/details";
 import {LectureSubscriptionPage} from "../pages/lectures/sub-views/realize-subscription";
@@ -16,7 +16,7 @@ export const Layout = () => {
     LectureDetailsPage,
     LectureSubscriptionPage,
     MySubscriptionsPage,
-  ], SideMenuComponent);
+  ], SideMenu);
 
   const Layout = createAppContainer(drawerNavigator);
 

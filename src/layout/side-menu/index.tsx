@@ -1,69 +1,107 @@
 import React, {Component} from "react";
-import {SideMenuComponentStyles} from "./styles";
+import {connect} from "react-redux";
+import {bindActionCreators, Dispatch} from "redux";
 import {TouchableOpacity} from "react-native";
+import {SideMenuComponentStyles} from "./styles";
+import {StatesReducers} from "../../redux/reducers";
+import {SideMenuInitialState} from "./redux/side-menu-reducer";
+import {SideMenuModel} from "./model";
+import {Routes} from "../../routes/routes";
 import {DrawerContentComponentProps} from "react-navigation-drawer/lib/typescript/src/types";
+import {SideMenuConst} from "./constants";
+import {LectureTypeResponseModel} from "../../services/lectures/model";
 
-export class SideMenuComponent extends Component<DrawerContentComponentProps> {
+interface Props extends DrawerContentComponentProps, SideMenuModel.Props {}
 
-  render = () => {
+export class SideMenuPure extends Component<Props> {
+
+  getListFilter = (): JSX.Element => {
 
     const {
-      View,
-      ViewIcon,
-      Icon,
+      lectureTypes
+    } = this.props;
+
+    const {
       ViewSubList,
       ViewList,
       TextListTitle,
       TextLink,
     } = SideMenuComponentStyles;
 
+    const {
+      filterTitle,
+      filterAll,
+    } = SideMenuConst;
+
+    let elements: JSX.Element[] = [];
+
+    if(lectureTypes?.length === 0)
+      return <></>;
+
+    for(let type of lectureTypes!) {
+
+      elements.push(
+        <ViewSubList key={type.Codigo}>
+          <TouchableOpacity onPress={() => this.changeFilter(type)}>
+            <TextLink>
+              { type.Descricao }
+            </TextLink>
+          </TouchableOpacity>
+        </ViewSubList>
+      )
+
+    }
+
+    return (
+      <ViewList>
+        <TextListTitle>
+          { filterTitle }
+        </TextListTitle>
+        <ViewSubList>
+          <TouchableOpacity onPress={() => this.changeFilter(null)}>
+            <TextLink>
+              { filterAll }
+            </TextLink>
+          </TouchableOpacity>
+        </ViewSubList>
+        { elements }
+      </ViewList>
+    )
+
+  };
+
+  changeFilter = (type: LectureTypeResponseModel | null) => {
+
+    this.props.functions?.changeLectureFilter(type);
+    this.props.navigation.closeDrawer();
+
+  };
+
+  render = () => {
+
+    const {
+      navigation
+    } = this.props;
+
+    const {
+      View,
+      ViewIcon,
+      Icon,
+      TextLink,
+    } = SideMenuComponentStyles;
+
+    const {
+      mySubscriptions
+    } = SideMenuConst;
+
     return (
       <View>
-        <ViewIcon>
+        <ViewIcon onPress={navigation.closeDrawer}>
           <Icon name="close" />
         </ViewIcon>
-        <ViewList>
-          <TextListTitle>
-            Filtrar por assunto
-          </TextListTitle>
-          <ViewSubList>
-            <TouchableOpacity>
-              <TextLink>
-                Todos
-              </TextLink>
-            </TouchableOpacity>
-          </ViewSubList>
-          <ViewSubList>
-            <TouchableOpacity>
-              <TextLink>
-                Gestão de Pessoas
-              </TextLink>
-            </TouchableOpacity>
-          </ViewSubList>
-          <ViewSubList>
-            <TouchableOpacity>
-              <TextLink>
-                Tecnologia
-              </TextLink>
-            </TouchableOpacity>
-          </ViewSubList>
-          <ViewSubList>
-            <TouchableOpacity>
-              <TextLink>
-                Empreendedorismo
-              </TextLink>
-            </TouchableOpacity>
-          </ViewSubList>
-          <ViewSubList>
-            <TouchableOpacity>
-              <TextLink>
-                Cultura Maker
-              </TextLink>
-            </TouchableOpacity>
-          </ViewSubList>
-        </ViewList>
-        <TouchableOpacity>
-          <TextLink>Minhas inscrições</TextLink>
+        { this.getListFilter() }
+        <TouchableOpacity onPress={() => navigation.navigate(Routes.mySubscriptions)}>
+          <TextLink>{ mySubscriptions }</TextLink>
         </TouchableOpacity>
       </View>
     )
@@ -71,3 +109,13 @@ export class SideMenuComponent extends Component<DrawerContentComponentProps> {
   }
 
 }
+
+const mapStateToProps = (state: StatesReducers) => {
+  return state.sideMenuInitialState
+};
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  functions: bindActionCreators(SideMenuInitialState.functions!, dispatch)
+});
+
+export const SideMenu = connect(mapStateToProps, mapDispatchToProps)(SideMenuPure);

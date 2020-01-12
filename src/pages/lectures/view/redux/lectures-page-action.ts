@@ -66,4 +66,11 @@ export class LecturesPageAction {
     }
   });
 
+  static changeLectureFilter = (type: LectureTypeResponseModel | null): LecturesPageActionType => ({
+    type: LecturesPageActionConst.CHANGE_FILTER_LECTURE,
+    payload: {
+      lectureTypeSelected: type
+    }
+  })
+
 }

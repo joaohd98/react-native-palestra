@@ -1,6 +1,6 @@
-import {LecturesPageModel} from "../providers/lectures-page-model";
 import {LecturesPageAction, LecturesPageActionConst, LecturesPageActionType} from "./lectures-page-action";
 import {ServiceStatus} from "../../../../services/model";
+import {LecturesPageModel} from "../model";
 
 export const LecturesPageInitialState: LecturesPageModel.Props = {
   lectures: [],
@@ -61,6 +61,13 @@ export const LecturesPageReducer = (state = LecturesPageInitialState, action: Le
         ...state,
         status: action.payload.status,
         lecturesTypes: action.payload.lecturesTypes
+      }
+    }
+
+    case LecturesPageActionConst.CHANGE_FILTER_LECTURE: {
+      return {
+        ...state,
+        lectureTypeSelected: action.payload.lectureTypeSelected
       }
     }
 
