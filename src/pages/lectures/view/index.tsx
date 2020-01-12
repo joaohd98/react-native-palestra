@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {StatesReducers} from "../../../redux/reducers";
 import {bindActionCreators, Dispatch} from "redux";
 import {LecturesPageInitialState} from "./redux/lecture-page-reducer";
+import Config from 'react-native-config';
 
 export class Lecture extends Component<any, {navigaton: any}> {
 
@@ -11,7 +12,7 @@ export class Lecture extends Component<any, {navigaton: any}> {
 
     return (
       <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
-        <Text>LecturePage</Text>
+        <Text>{ Config.API_URL }</Text>
       </View>
     )
 
