@@ -1,7 +1,6 @@
-import {LecturesPageModel} from "../providers/lectures-page-model";
 import {ServiceResponse, ServiceStatus} from "../../../../services/model";
 import {LectureResponseModel, LectureTypeResponseModel} from "../../../../services/lectures/model";
-import {Routes} from "../../../../routes/routes";
+import {LecturesPageModel} from "../model";
 
 export enum LecturesPageActionConst {
   FETCH_LECTURE_AND_TYPE_REQUESTED = "LecturesPage/FETCH_LECTURE_AND_TYPE_REQUESTED",

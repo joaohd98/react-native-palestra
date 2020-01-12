@@ -1,4 +1,4 @@
-import {call, put, takeEvery} from 'redux-saga/effects'
+import {call, put, takeEvery, all} from 'redux-saga/effects'
 import {LecturesPageAction, LecturesPageActionConst} from "./lectures-page-action";
 import {LecturesService} from "../../../../services/lectures/service";
 import {ServiceResponse, ServiceStatus} from "../../../../services/model";
@@ -6,8 +6,10 @@ import {LectureResponseModel, LectureTypeResponseModel} from "../../../../servic
 
 function *getLecturesAndTypes() {
 
-  const lectures = yield call(() => LecturesService.getLectures());
-  const types = yield call(() => LecturesService.getLectures());
+  const [lectures, types] = yield all([
+    call(() => LecturesService.getLectures()),
+    call( () => LecturesService.getTypes())
+  ]);
 
   const result: ServiceResponse<{ lectures: LectureResponseModel[], types: LectureTypeResponseModel[] }> = {
     status: lectures.status == types.status && lectures.status == ServiceStatus.success ? ServiceStatus.success : ServiceStatus.exception,

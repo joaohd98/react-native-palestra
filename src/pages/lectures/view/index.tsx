@@ -4,10 +4,15 @@ import {connect} from 'react-redux';
 import {StatesReducers} from "../../../redux/reducers";
 import {bindActionCreators, Dispatch} from "redux";
 import {LecturesPageInitialState} from "./redux/lectures-page-reducer";
-import Config from 'react-native-config';
-import {LecturesPageModel} from "./providers/lectures-page-model";
+import {ServiceStatus} from "../../../services/model";
+import {LecturesPageWarningMessage} from "./components/warning-message";
+import {Container} from "../../../theme/components";
+import {LecturesPageHeader} from "./components/header";
+import {LecturesPageModel} from "./model";
 
 export class Lecture extends Component<LecturesPageModel.Props> {
+
+  static navigationOptions = LecturesPageHeader;
 
   componentDidMount = () => {
 
@@ -15,14 +20,35 @@ export class Lecture extends Component<LecturesPageModel.Props> {
 
   };
 
-  render = () => {
+  getLectureWarningComponent = (): JSX.Element => {
 
-    console.log(this.props);
+    const { status, lecturesTypes, functions } = this.props;
 
     return (
-      <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
-        <Text>{ Config.API_URL }</Text>
-      </View>
+      <LecturesPageWarningMessage
+        status={status!}
+        tryAgain={lecturesTypes == null ? functions?.getLectureTypes! : functions?.getLectures!}
+      />
+    )
+
+  };
+
+  render() {
+
+    const { status, lectures, lecturesTypes, lectureTypeSelected, functions } = this.props;
+
+    const getElement = {
+      [ServiceStatus.loading]:  <View/>,
+      [ServiceStatus.noInternetConnection]: this.getLectureWarningComponent(),
+      [ServiceStatus.exception]: this.getLectureWarningComponent(),
+      [ServiceStatus.success]: <View/>,
+      [ServiceStatus.noAction]: <View/>,
+    };
+
+    return (
+      <Container>
+        { this.getLectureWarningComponent() }
+      </Container>
     )
 
   }

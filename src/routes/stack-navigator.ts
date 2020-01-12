@@ -16,10 +16,6 @@ export const CreateStackNavigator = (page: Function) => {
         borderBottomColor: Colors.gray,
         borderBottomWidth: .5,
       },
-      headerTitleContainerStyle: {
-        right: 50,
-        left: 50
-      },
       headerTitleStyle: {
         textAlign: "center",
         fontWeight: "400",
@@ -31,8 +27,11 @@ export const CreateStackNavigator = (page: Function) => {
         alignSelf: "center"
       },
       headerRightContainerStyle: {
-        right: 15
-      }
+        right: 20,
+      },
+      headerLeftContainerStyle: {
+        left: 20,
+      },
     }
   });
 

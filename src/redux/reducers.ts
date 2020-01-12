@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import {LecturesPageModel} from "../pages/lectures/view/providers/lectures-page-model";
 import {LecturesPageReducer} from "../pages/lectures/view/redux/lectures-page-reducer";
+import {LecturesPageModel} from "../pages/lectures/view/model";
 
 export interface StatesReducers {
   lecturesPageInitialState: LecturesPageModel.Props

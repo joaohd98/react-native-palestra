@@ -1,8 +1,6 @@
 import {LecturesPageModel} from "../providers/lectures-page-model";
 import {LecturesPageAction, LecturesPageActionConst, LecturesPageActionType} from "./lectures-page-action";
 import {ServiceStatus} from "../../../../services/model";
-import {LecturePage} from "../index";
-import {Routes} from "../../../../routes/routes";
 
 export const LecturesPageInitialState: LecturesPageModel.Props = {
   lectures: [],
