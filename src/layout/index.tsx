@@ -6,6 +6,8 @@ import {LecturePage} from "../pages/lectures/view";
 import {LectureDetailsPage} from "../pages/lectures/sub-views/details";
 import {LectureSubscriptionPage} from "../pages/lectures/sub-views/realize-subscription";
 import {MySubscriptionsPage} from "../pages/my-subscriptions/view";
+import {Provider} from "react-redux";
+import {store} from "../redux/store";
 
 export const Layout = () => {
 
@@ -18,6 +20,10 @@ export const Layout = () => {
 
   const Layout = createAppContainer(drawerNavigator);
 
-  return <Layout/>;
+  return (
+    <Provider store={store}>
+      <Layout/>
+    </Provider>
+  );
 
 };
