@@ -11,18 +11,18 @@ import {serviceURL} from "../url";
 
 export class LecturesService extends Service {
 
-  static getLectures = (): Promise<ServiceResponse<LectureResponseModel>> => {
+  static getLectures = (): Promise<ServiceResponse<LectureResponseModel[]>> => {
 
-    return LecturesService.makeGetRequest<LectureResponseModel>(
+    return LecturesService.makeGetRequest<LectureResponseModel[]>(
       LecturesService.getUrl(serviceURL.getLecture),
       null
     );
 
   };
 
-  static getTypes = (): Promise<ServiceResponse<LectureTypeResponseModel>> => {
+  static getTypes = (): Promise<ServiceResponse<LectureTypeResponseModel[]>> => {
 
-    return LecturesService.makeGetRequest<LectureResponseModel>(
+    return LecturesService.makeGetRequest<LectureResponseModel[]>(
       LecturesService.getUrl(serviceURL.getTypes),
       null
     );
