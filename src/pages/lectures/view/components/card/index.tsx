@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {LectureResponseModel} from "../../../../../services/lectures/model";
 import {LecturesPageCardStyles} from "./styles";
 import {images} from "../../../../../assets";
+import {LecturesPageCardConst} from "./constants";
 
 interface Props {
   lecture: LectureResponseModel,
@@ -21,12 +22,21 @@ export class LecturesPageCard extends Component<Props> {
       CardLogo,
       CardDescriptionContent,
       CardText,
+      CardDateHour,
       CardFooterContent,
       CardFooterButton,
       CardFooterText
     } = LecturesPageCardStyles;
 
-    const source: any = images.profiles[lecture.Imagem];
+    const {
+      lectureSpeaker,
+      lectureDate,
+      lectureHour,
+      lectureVacancies,
+      seeMore,
+    } = LecturesPageCardConst;
+
+    const source = images.profiles[lecture.Imagem];
 
     return (
       <CardView>
@@ -34,12 +44,19 @@ export class LecturesPageCard extends Component<Props> {
           <CardLogo source={source} resizeMode={'stretch'}/>
           <CardDescriptionContent>
             <CardText>{ lecture.Titulo }</CardText>
-            <CardText>Palestrante: { lecture.Palestrante }</CardText>
-            <CardText>Data: { lecture.Data } Hora: { lecture.Hora}</CardText>
+            <CardText>{ lectureSpeaker } { lecture.Palestrante }</CardText>
+            <CardDateHour>
+              <CardText>
+                { lectureDate } { lecture.Data }
+              </CardText>
+              <CardText>
+                { lectureHour } { lecture.Hora }
+              </CardText>
+            </CardDateHour>
             <CardFooterContent>
-              <CardText>Vagas {lecture.QtdVagasDisponiveis}</CardText>
+              <CardText>{ lectureVacancies } {lecture.QtdVagasDisponiveis}</CardText>
               <CardFooterButton>
-                <CardFooterText>Ver mais</CardFooterText>
+                <CardFooterText>{ seeMore }</CardFooterText>
               </CardFooterButton>
             </CardFooterContent>
           </CardDescriptionContent>

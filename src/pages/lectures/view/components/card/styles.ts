@@ -28,6 +28,9 @@ export const LecturesPageCardStyles = {
     color: ${Colors.black};
     flex: 1;
   `,
+  CardDateHour: styled.View`
+    flex-direction: row;
+  `,
   CardFooterContent: styled.View `
     flex-direction: row;
   `,
