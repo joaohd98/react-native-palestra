@@ -3,6 +3,7 @@ import {SectionList, View} from "react-native";
 import {LectureResponseModel, LectureTypeResponseModel} from "../../../../../services/lectures/model";
 import {LecturesPageListStyles} from "./styles";
 import {LecturesPageCard} from "../card";
+import {LecturesPageWarningMessage, LecturesPageWarningMessageStatus} from "../warning-message";
 
 interface ISection {
   title: string,
@@ -56,8 +57,6 @@ export class LecturesPageList extends Component<Props, State> {
 
     });
 
-    console.log(sections);
-
     this.setState({ sections });
 
   };
@@ -74,6 +73,7 @@ export class LecturesPageList extends Component<Props, State> {
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => <LecturesPageCard lecture={item as LectureResponseModel} />}
         renderSectionHeader={({ section: { title } }) => <SectionTitle>{ title }</SectionTitle>}
+        ListEmptyComponent={<LecturesPageWarningMessage status={LecturesPageWarningMessageStatus.emptyList}/>}
       />
     )
 

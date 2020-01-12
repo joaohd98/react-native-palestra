@@ -5,7 +5,7 @@ import {StatesReducers} from "../../../redux/reducers";
 import {bindActionCreators, Dispatch} from "redux";
 import {LecturesPageInitialState} from "./redux/lectures-page-reducer";
 import {ServiceStatus} from "../../../services/model";
-import {LecturesPageWarningMessage} from "./components/warning-message";
+import {LecturesPageWarningMessage, LecturesPageWarningMessageStatus} from "./components/warning-message";
 import {Container} from "../../../theme/components";
 import {LecturesPageHeader} from "./components/header";
 import {LecturesPageModel} from "./model";
@@ -22,13 +22,13 @@ export class Lecture extends Component<LecturesPageModel.Props> {
 
   };
 
-  getLectureWarningComponent = (): JSX.Element => {
+  getLectureWarningComponent = (status: LecturesPageWarningMessageStatus): JSX.Element => {
 
-    const { status, lecturesTypes, functions } = this.props;
+    const { lecturesTypes, functions } = this.props;
 
     return (
       <LecturesPageWarningMessage
-        status={status!}
+        status={status}
         tryAgain={lecturesTypes == null ? functions?.getLectureTypes! : functions?.getLectures!}
       />
     )
@@ -41,8 +41,8 @@ export class Lecture extends Component<LecturesPageModel.Props> {
 
     const getElement = {
       [ServiceStatus.loading]:  <LecturesPageListLoading/>,
-      [ServiceStatus.noInternetConnection]: this.getLectureWarningComponent(),
-      [ServiceStatus.exception]: this.getLectureWarningComponent(),
+      [ServiceStatus.noInternetConnection]: this.getLectureWarningComponent(LecturesPageWarningMessageStatus.noInternetConnection),
+      [ServiceStatus.exception]: this.getLectureWarningComponent(LecturesPageWarningMessageStatus.exception),
       [ServiceStatus.success]: <LecturesPageList lectures={lectures!} types={lecturesTypes!} selectedType={lectureTypeSelected!} />,
       [ServiceStatus.noAction]: <View/>,
     };
