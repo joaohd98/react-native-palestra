@@ -10,6 +10,7 @@ import {Container} from "../../../theme/components";
 import {LecturesPageHeader} from "./components/header";
 import {LecturesPageModel} from "./model";
 import {LecturesPageList} from "./components/list";
+import {LecturesPageListLoading} from "./components/list-loading";
 
 export class Lecture extends Component<LecturesPageModel.Props> {
 
@@ -39,7 +40,7 @@ export class Lecture extends Component<LecturesPageModel.Props> {
     const { status, lectures, lecturesTypes, lectureTypeSelected, functions } = this.props;
 
     const getElement = {
-      [ServiceStatus.loading]:  <View/>,
+      [ServiceStatus.loading]:  <LecturesPageListLoading/>,
       [ServiceStatus.noInternetConnection]: this.getLectureWarningComponent(),
       [ServiceStatus.exception]: this.getLectureWarningComponent(),
       [ServiceStatus.success]: <LecturesPageList lectures={lectures!} types={lecturesTypes!} selectedType={lectureTypeSelected!} />,

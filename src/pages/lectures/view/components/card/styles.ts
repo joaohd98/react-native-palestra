@@ -6,7 +6,7 @@ import {Animated} from "react-native";
 export const LecturesPageCardStyles = {
   CardView: styled.View `
     margin: 10px;
-    border: 1px solid ${Colors.blue};
+    border: 1px solid ${Colors.black};
     padding: 10px;
   `,
   CardContent: styled.View`
