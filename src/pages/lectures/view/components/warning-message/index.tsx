@@ -1,72 +1,43 @@
 import React, {Component} from "react";
-import {WarningMessageComponent, WarningMessageComponentProps} from "../../../../../components/warning-message";
-import {images} from "../../../../../assets";
-import {LecturesPageWarningMessageConstants} from "./constants";
-
-export enum LecturesPageWarningMessageStatus {
-  exception,
-  noInternetConnection,
-  emptyList
-}
+import {LecturesPageWarningMessageConst} from "./constants";
+import {WarningMessageComponent} from "../../../../../components/warning-message";
 
 interface Props {
-  status: LecturesPageWarningMessageStatus,
-  tryAgain?: () => void,
+  hasException?: boolean,
+  hasNoInternetConnection?: boolean,
+  hasEmptyList?: boolean,
+  onPress?: () => void
 }
 
 export class LecturesPageWarningMessage extends Component<Props> {
 
-
-  getMessage = (): string => {
-
-    const {status} = this.props;
-
-    const {
-      statusNoInternetConnection,
-      statusException,
-      statusEmptyList,
-    } = LecturesPageWarningMessageConstants;
-
-    const messages = {
-      [LecturesPageWarningMessageStatus.noInternetConnection]: statusNoInternetConnection,
-      [LecturesPageWarningMessageStatus.exception]: statusException,
-      [LecturesPageWarningMessageStatus.emptyList]: statusEmptyList,
-    };
-
-    return messages[status];
-
-  };
-
-  getWarningProps = (): WarningMessageComponentProps => {
-
-    const {
-      title,
-      button
-    } = LecturesPageWarningMessageConstants;
-
-    const {status, tryAgain} = this.props;
-
-    let warning: any = {
-      image: images.warning,
-      title: title,
-      message: this.getMessage(),
-    };
-
-    if(tryAgain) {
-      warning = {
-        ...warning,
-        buttonText: button,
-        onButtonPress: () => tryAgain()
-      }
-    }
-
-    return  warning
-
-  };
-
   render = () => {
 
-    return <WarningMessageComponent {...this.getWarningProps()}/>;
+    const {
+      hasException,
+      hasNoInternetConnection,
+      hasEmptyList,
+      onPress
+    } = this.props;
+
+    const {
+      titleException,
+      titleEmptyList,
+      titleInternet,
+      messageException,
+      messageEmptyList,
+      messageInternet,
+      buttonText
+    } = LecturesPageWarningMessageConst;
+
+    const [title, message] = hasEmptyList ? [titleEmptyList, messageEmptyList]
+      : hasException ? [titleException, messageException]
+      : hasNoInternetConnection ? [titleInternet, messageInternet]
+      : [];
+
+    return (
+      <WarningMessageComponent title={title} message={message} onButtonPress={onPress} buttonText={buttonText}/>
+    );
 
   }
 

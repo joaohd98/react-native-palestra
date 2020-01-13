@@ -10,10 +10,10 @@ import {MySubscriptionsPage} from "../pages/my-subscriptions/view";
 export const Layout = () => {
 
   const drawerNavigator = CreateDrawerNavigator( [
-    // LecturePage,
+    LecturePage,
    // LectureDetailsPage,
    // LectureSubscriptionPage,
-   MySubscriptionsPage,
+   //MySubscriptionsPage,
   ], SideMenu);
 
   const Layout = createAppContainer(drawerNavigator);

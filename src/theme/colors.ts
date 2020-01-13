@@ -1,6 +1,7 @@
 export class Colors {
   static gray = "#B4B4B4";
   static grayLight = "#f2f2f2";
+  static grayDark = "#a9a9a9";
   static blue = "#0645AD";
   static white = "#FAFAFA";
   static black = "#000";

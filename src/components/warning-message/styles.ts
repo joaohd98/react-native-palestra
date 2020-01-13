@@ -25,7 +25,7 @@ export const WarningMessageComponentStyle = {
   `,
   Message: styled.Text`
     font-size: 14px;
-    color: ${Colors.gray};
+    color: ${Colors.grayDark};
     font-weight: bold;
     margin-bottom: 15px;
   `,

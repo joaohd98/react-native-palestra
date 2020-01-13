@@ -1,7 +1,9 @@
-export const LecturesPageWarningMessageConstants = {
-  title: "Aviso",
-  statusNoInternetConnection: "Aconteceu algo de errado, tente novamente mais tarde.",
-  statusException: "Não há internet, tente novamente mais tarde.",
-  statusEmptyList: "Não foi encontrado resultados!",
-  button: "Tentar novamente"
+export const LecturesPageWarningMessageConst = {
+  titleInternet: "Parece que não há intenet!",
+  messageInternet: "Verifique sua conexão para continuar navegando",
+  titleException: "Parece que há algo errado!",
+  messageException: "Isso é culpa nossa. Tente novamente mais tarde!",
+  titleEmptyList: "Não foi encontrado palestras!",
+  messageEmptyList: "Aguarde que logo iremos adicionar mais palestras!",
+  buttonText: "Tentar Novamente",
 };

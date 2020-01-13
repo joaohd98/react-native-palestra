@@ -4,7 +4,7 @@ import {LecturesService} from "../../../../services/lectures/service";
 import {ServiceResponse, ServiceStatus} from "../../../../services/model";
 import {LectureResponseModel, LectureTypeResponseModel} from "../../../../services/lectures/model";
 import {SideMenuAction} from "../../../../layout/side-menu/redux/side-menu-action";
-import {MySubscriptionsAction} from "../../../my-subscriptions/view/redux/my-subscriptions-action";
+import {Helpers} from "../../../../helpers";
 
 function *getLecturesAndTypes() {
 
@@ -14,13 +14,12 @@ function *getLecturesAndTypes() {
   ]);
 
   const result: ServiceResponse<{ lectures: LectureResponseModel[], types: LectureTypeResponseModel[] }> = {
-    status: lectures.status == types.status && lectures.status == ServiceStatus.success ? ServiceStatus.success : ServiceStatus.exception,
+    status: Helpers.checkStatusMultipleResponse([lectures, types]),
     response: {lectures: lectures.response!, types: types.response!}
   };
 
   yield all([
     put(SideMenuAction.setType(types)),
-    put(MySubscriptionsAction.setLectures(lectures)),
     put(LecturesPageAction.setLecturesTypes(result))
   ]);
 

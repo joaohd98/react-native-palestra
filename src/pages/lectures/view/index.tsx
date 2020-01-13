@@ -5,11 +5,10 @@ import {StatesReducers} from "../../../redux/reducers";
 import {bindActionCreators, Dispatch} from "redux";
 import {LecturesPageInitialState} from "./redux/lectures-page-reducer";
 import {ServiceStatus} from "../../../services/model";
-import {LecturesPageWarningMessage, LecturesPageWarningMessageStatus} from "./components/warning-message";
+import {LecturesPageWarningMessage} from "./components/warning-message";
 import {Container} from "../../../theme/components";
 import {LecturesPageHeader} from "./components/header";
 import {LecturesPageModel} from "./model";
-import {ListLectureLoading} from "../../../components/list-lectures/list-loading";
 import {ListLecture} from "../../../components/list-lectures/list";
 
 export class Lecture extends Component<LecturesPageModel.Props> {
@@ -17,22 +16,11 @@ export class Lecture extends Component<LecturesPageModel.Props> {
   static navigationOptions = LecturesPageHeader;
 
   componentDidMount = () => {
-
-    this.props.functions?.getLectureTypes();
-
+    this.getLectureTypeSubscriptions();
   };
 
-  getLectureWarningComponent = (status: LecturesPageWarningMessageStatus): JSX.Element => {
-
-    const { lecturesTypes, functions } = this.props;
-
-    return (
-      <LecturesPageWarningMessage
-        status={status}
-        tryAgain={lecturesTypes == null ? functions?.getLectureTypes! : functions?.getLectures!}
-      />
-    )
-
+  getLectureTypeSubscriptions = () => {
+    this.props.functions?.getLectureTypes();
   };
 
   render() {
@@ -40,11 +28,26 @@ export class Lecture extends Component<LecturesPageModel.Props> {
     const { status, lectures, lecturesTypes, lectureTypeSelected, functions } = this.props;
 
     const getElement = {
-      [ServiceStatus.loading]:  <ListLectureLoading/>,
-      [ServiceStatus.noInternetConnection]: this.getLectureWarningComponent(LecturesPageWarningMessageStatus.noInternetConnection),
-      [ServiceStatus.exception]: this.getLectureWarningComponent(LecturesPageWarningMessageStatus.exception),
-      [ServiceStatus.success]: <ListLecture lectures={lectures!} types={lecturesTypes!} selectedType={lectureTypeSelected!} />,
       [ServiceStatus.noAction]: <View/>,
+      [ServiceStatus.noInternetConnection]:
+        <LecturesPageWarningMessage
+          hasNoInternetConnection={true}
+          onPress={this.getLectureTypeSubscriptions}
+        />,
+      [ServiceStatus.exception]:
+        <LecturesPageWarningMessage
+          hasException={true}
+          onPress={this.getLectureTypeSubscriptions}
+        />,
+      [ServiceStatus.loading]:
+        <ListLecture loading={true}/>,
+      [ServiceStatus.success]:
+        <ListLecture
+          lectures={lectures!}
+          types={lecturesTypes!}
+          ruleShowType={rule => lectureTypeSelected != null && rule.Codigo !== lectureTypeSelected.Codigo}
+          listEmptyComponent={<LecturesPageWarningMessage hasEmptyList={true}/>}
+        />,
     };
 
     return (
