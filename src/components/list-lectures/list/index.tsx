@@ -75,8 +75,6 @@ export class ListLecture extends Component<Props, State> {
 
     const { lectures, types, ruleShowType, ruleShowLecture } = this.props;
 
-    console.log(ruleShowType);
-    console.log(ruleShowLecture);
     if(!lectures || !types)
       return;
 

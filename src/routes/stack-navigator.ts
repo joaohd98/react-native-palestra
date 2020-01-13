@@ -1,13 +1,14 @@
 import {Colors} from "../theme/colors";
 import {createStackNavigator} from "react-navigation-stack";
 
-export const CreateStackNavigator = (page: Function) => {
+export const CreateStackNavigator = (stacks: {name: string, page: Function}[]) => {
 
-  const route: { [key: string]: any } = {
-    [page.name]: page
-  };
+  let routes: any = [];
 
-  return createStackNavigator(route, {
+  stacks.forEach(stack => routes[stack.name] = stack.page);
+
+
+  return createStackNavigator(routes, {
     headerLayoutPreset: "center",
     defaultNavigationOptions:  {
       headerStyle: {
@@ -23,7 +24,7 @@ export const CreateStackNavigator = (page: Function) => {
         fontSize: 20,
         lineHeight: 50,
         letterSpacing: 4,
-        textTransform: "capitalize",
+        textTransform: "none",
         alignSelf: "center"
       },
       headerRightContainerStyle: {
