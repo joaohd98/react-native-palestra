@@ -7,7 +7,6 @@ export const CreateStackNavigator = (stacks: {name: string, page: Function}[]) =
 
   stacks.forEach(stack => routes[stack.name] = stack.page);
 
-
   return createStackNavigator(routes, {
     headerLayoutPreset: "center",
     defaultNavigationOptions:  {

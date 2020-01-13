@@ -71,16 +71,19 @@ export class SideMenuPure extends Component<Props> {
   };
 
   goMySubscriptions = () => {
-    this.props.navigation.navigate(Routes.mySubscriptions);
-    this.props.navigation.closeDrawer();
+    this.goRoute(Routes.mySubscriptions);
   };
 
   changeFilter = (type: LectureTypeResponseModel | null) => {
 
     this.props.functions?.changeLectureFilter(type!);
-    this.props.navigation.navigate(Routes.lectures);
-    this.props.navigation.closeDrawer();
+    this.goRoute(Routes.lectures);
 
+  };
+
+  goRoute = (path: string) => {
+    this.props.navigation.navigate(path);
+    this.props.navigation.closeDrawer();
   };
 
   render = () => {

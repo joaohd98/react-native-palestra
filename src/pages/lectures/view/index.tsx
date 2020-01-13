@@ -10,17 +10,17 @@ import {Container} from "../../../theme/components";
 import {LecturesPageHeader} from "./components/header";
 import {LecturesPageModel} from "./model";
 import {ListLecture} from "../../../components/list-lectures/list";
-import Config from "react-native-config";
+//import Config from "react-native-config";
 
 export class Lecture extends Component<LecturesPageModel.Props> {
 
   static navigationOptions = LecturesPageHeader;
 
   componentDidMount = () => {
-    this.getLectureTypeSubscriptions();
+    this.getLectureType();
   };
 
-  getLectureTypeSubscriptions = () => {
+  getLectureType = () => {
     this.props.functions?.getLectureTypes();
   };
 
@@ -33,12 +33,12 @@ export class Lecture extends Component<LecturesPageModel.Props> {
       [ServiceStatus.noInternetConnection]:
         <LecturesPageWarningMessage
           hasNoInternetConnection={true}
-          onPress={this.getLectureTypeSubscriptions}
+          onPress={this.getLectureType}
         />,
       [ServiceStatus.exception]:
         <LecturesPageWarningMessage
           hasException={true}
-          onPress={this.getLectureTypeSubscriptions}
+          onPress={this.getLectureType}
         />,
       [ServiceStatus.loading]:
         <ListLecture loading={true}/>,

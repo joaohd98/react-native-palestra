@@ -15,8 +15,7 @@ export class MySubscriptionsPageFooterButton extends Component<Props> {
     const { ButtonGray } = MySubscriptionsPageFooterButtonStyles;
     const { back } = MySubscriptionsPageFooterButtonConst;
 
-
-    return <ButtonGray text={back} onPress={navigation.goBack}/>;
+    return <ButtonGray text={back} onPress={() => navigation.goBack()}/>;
 
   }
 
