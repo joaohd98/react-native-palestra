@@ -26,7 +26,7 @@ export class MySubscriptions extends Component<MySubscriptionsPageModel.Props> {
 
   render = () => {
 
-    const { lectures, types, subscriptions, status } = this.props;
+    const { lectures, types, subscriptions, status, navigation } = this.props;
 
     const getElement = {
       [ServiceStatus.noAction]: <View/>,
@@ -43,7 +43,7 @@ export class MySubscriptions extends Component<MySubscriptionsPageModel.Props> {
       [ServiceStatus.loading]:
         <ListLecture
           loading={true}
-          listFooterComponent={<MySubscriptionsPageFooterButton/>}
+          listFooterComponent={<MySubscriptionsPageFooterButton navigation={navigation}/>}
         />,
       [ServiceStatus.success]:
         <ListLecture
@@ -51,7 +51,7 @@ export class MySubscriptions extends Component<MySubscriptionsPageModel.Props> {
           types={types!}
           ruleShowLecture={(lecture => subscriptions!.find(subscription => subscription.CodigoPalestra == lecture.Codigo) != undefined)}
           listEmptyComponent={<MySubscriptionsPageWarningMessage hasEmptyList={true}/>}
-          listFooterComponent={<MySubscriptionsPageFooterButton/>}
+          listFooterComponent={<MySubscriptionsPageFooterButton navigation={navigation}/>}
         />,
     };
 

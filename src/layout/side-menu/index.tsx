@@ -70,6 +70,11 @@ export class SideMenuPure extends Component<Props> {
 
   };
 
+  goMySubscriptions = () => {
+    this.props.navigation.navigate(Routes.mySubscriptions);
+    this.props.navigation.closeDrawer();
+  };
+
   changeFilter = (type: LectureTypeResponseModel | null) => {
 
     this.props.functions?.changeLectureFilter(type!);
@@ -101,7 +106,7 @@ export class SideMenuPure extends Component<Props> {
           <Icon name="close" />
         </ViewIcon>
         { this.getListFilter() }
-        <TouchableOpacity onPress={() => navigation.navigate(Routes.mySubscriptions)}>
+        <TouchableOpacity onPress={this.goMySubscriptions}>
           <TextLink>{ mySubscriptions }</TextLink>
         </TouchableOpacity>
       </View>

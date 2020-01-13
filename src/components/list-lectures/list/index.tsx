@@ -18,8 +18,8 @@ interface State {
 interface Props {
   lectures?: LectureResponseModel[],
   types?: LectureTypeResponseModel[],
+  selectedType?: LectureTypeResponseModel,
   loading?: boolean,
-  ruleShowType?: (type: LectureTypeResponseModel) => boolean,
   ruleShowLecture?: (lecture: LectureResponseModel) => boolean,
   listEmptyComponent?: JSX.Element,
   listFooterComponent?: JSX.Element,
@@ -39,10 +39,11 @@ export class ListLecture extends Component<Props, State> {
 
     const isEqual = Helpers.isEqual;
 
-    const hasChangeLectures = isEqual(prevProps.lectures, this.props.lectures);
-    const hasChangeTypes = isEqual(prevProps.types, this.props.types);
+    const hasChangeSelected = !isEqual(prevProps.selectedType, this.props.selectedType);
+    const hasChangeLectures = !isEqual(prevProps.lectures, this.props.lectures);
+    const hasChangeTypes = !isEqual(prevProps.types, this.props.types);
 
-    if(!hasChangeLectures || !hasChangeTypes) {
+    if(hasChangeSelected || hasChangeLectures || hasChangeTypes) {
       this.formatSections();
     }
 
@@ -73,7 +74,7 @@ export class ListLecture extends Component<Props, State> {
 
   formatSections = () => {
 
-    const { lectures, types, ruleShowType, ruleShowLecture } = this.props;
+    const { lectures, types, selectedType, ruleShowLecture } = this.props;
 
     if(!lectures || !types)
       return;
@@ -82,7 +83,7 @@ export class ListLecture extends Component<Props, State> {
 
     types.forEach(type => {
 
-      if(ruleShowType && ruleShowType(type))
+      if(selectedType && selectedType.Codigo !== type.Codigo)
         return;
 
       let section: ISection = {

@@ -25,7 +25,7 @@ export class Lecture extends Component<LecturesPageModel.Props> {
 
   render() {
 
-    const { status, lectures, lecturesTypes, lectureTypeSelected, functions } = this.props;
+    const { status, lectures, lecturesTypes, lectureTypeSelected } = this.props;
 
     const getElement = {
       [ServiceStatus.noAction]: <View/>,
@@ -45,7 +45,7 @@ export class Lecture extends Component<LecturesPageModel.Props> {
         <ListLecture
           lectures={lectures!}
           types={lecturesTypes!}
-          ruleShowType={rule => lectureTypeSelected != null && rule.Codigo !== lectureTypeSelected.Codigo}
+          selectedType={lectureTypeSelected!}
           listEmptyComponent={<LecturesPageWarningMessage hasEmptyList={true}/>}
         />,
     };
