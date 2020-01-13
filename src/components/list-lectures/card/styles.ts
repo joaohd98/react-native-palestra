@@ -1,9 +1,9 @@
 import styled from "styled-components/native";
-import {Colors} from "../../../../../theme/colors";
-import {ProgressiveImageComponent} from "../../../../../components/progressive-image";
+import {Colors} from "../../../theme/colors";
+import {ProgressiveImageComponent} from "../../progressive-image";
 import {Animated} from "react-native";
 
-export const LecturesPageCardStyles = {
+export const ListLectureCardStyles = {
   CardView: styled.View `
     margin: 10px;
     border: 1px solid ${Colors.black};

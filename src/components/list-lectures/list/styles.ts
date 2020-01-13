@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
-import {Colors} from "../../../../../theme/colors";
+import {Colors} from "../../../theme/colors";
 
-export const LecturesPageListStyles = {
+export const ListLectureStyles = {
   SectionTitle: styled.Text`
     padding: 10px 5px;
     font-size: 15px;

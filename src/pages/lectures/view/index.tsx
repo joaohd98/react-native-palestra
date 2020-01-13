@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Text, View} from "react-native";
+import {View} from "react-native";
 import {connect} from 'react-redux';
 import {StatesReducers} from "../../../redux/reducers";
 import {bindActionCreators, Dispatch} from "redux";
@@ -9,8 +9,8 @@ import {LecturesPageWarningMessage, LecturesPageWarningMessageStatus} from "./co
 import {Container} from "../../../theme/components";
 import {LecturesPageHeader} from "./components/header";
 import {LecturesPageModel} from "./model";
-import {LecturesPageList} from "./components/list";
-import {LecturesPageListLoading} from "./components/list-loading";
+import {ListLectureLoading} from "../../../components/list-lectures/list-loading";
+import {ListLecture} from "../../../components/list-lectures/list";
 
 export class Lecture extends Component<LecturesPageModel.Props> {
 
@@ -40,10 +40,10 @@ export class Lecture extends Component<LecturesPageModel.Props> {
     const { status, lectures, lecturesTypes, lectureTypeSelected, functions } = this.props;
 
     const getElement = {
-      [ServiceStatus.loading]:  <LecturesPageListLoading/>,
+      [ServiceStatus.loading]:  <ListLectureLoading/>,
       [ServiceStatus.noInternetConnection]: this.getLectureWarningComponent(LecturesPageWarningMessageStatus.noInternetConnection),
       [ServiceStatus.exception]: this.getLectureWarningComponent(LecturesPageWarningMessageStatus.exception),
-      [ServiceStatus.success]: <LecturesPageList lectures={lectures!} types={lecturesTypes!} selectedType={lectureTypeSelected!} />,
+      [ServiceStatus.success]: <ListLecture lectures={lectures!} types={lecturesTypes!} selectedType={lectureTypeSelected!} />,
       [ServiceStatus.noAction]: <View/>,
     };
 

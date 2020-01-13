@@ -72,7 +72,8 @@ export class SideMenuPure extends Component<Props> {
 
   changeFilter = (type: LectureTypeResponseModel | null) => {
 
-    this.props.functions?.changeLectureFilter(type);
+    this.props.functions?.changeLectureFilter(type!);
+    this.props.navigation.navigate(Routes.lectures);
     this.props.navigation.closeDrawer();
 
   };

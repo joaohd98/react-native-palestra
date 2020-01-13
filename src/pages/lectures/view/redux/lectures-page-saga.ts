@@ -4,6 +4,7 @@ import {LecturesService} from "../../../../services/lectures/service";
 import {ServiceResponse, ServiceStatus} from "../../../../services/model";
 import {LectureResponseModel, LectureTypeResponseModel} from "../../../../services/lectures/model";
 import {SideMenuAction} from "../../../../layout/side-menu/redux/side-menu-action";
+import {MySubscriptionsAction} from "../../../my-subscriptions/view/redux/my-subscriptions-action";
 
 function *getLecturesAndTypes() {
 
@@ -17,10 +18,11 @@ function *getLecturesAndTypes() {
     response: {lectures: lectures.response!, types: types.response!}
   };
 
-  if(types.response)
-    yield put(SideMenuAction.setType(types.response));
-
-  yield put(LecturesPageAction.setLecturesTypes(result));
+  yield all([
+    put(SideMenuAction.setType(types)),
+    put(MySubscriptionsAction.setLectures(lectures)),
+    put(LecturesPageAction.setLecturesTypes(result))
+  ]);
 
 }
 

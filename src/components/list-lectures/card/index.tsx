@@ -1,14 +1,15 @@
 import React, {Component} from "react";
-import {LectureResponseModel} from "../../../../../services/lectures/model";
-import {LecturesPageCardStyles} from "./styles";
-import {images} from "../../../../../assets";
+import {LectureResponseModel} from "../../../services/lectures/model";
 import {LecturesPageCardConst} from "./constants";
+import {images} from "../../../assets";
+import {ListLectureCardStyles} from "./styles";
+
 
 interface Props {
   lecture: LectureResponseModel,
 }
 
-export class LecturesPageCard extends Component<Props> {
+export class ListLectureCard extends Component<Props> {
 
   render = () => {
 
@@ -26,7 +27,7 @@ export class LecturesPageCard extends Component<Props> {
       CardFooterContent,
       CardFooterButton,
       CardFooterText
-    } = LecturesPageCardStyles;
+    } = ListLectureCardStyles;
 
     const {
       lectureSpeaker,

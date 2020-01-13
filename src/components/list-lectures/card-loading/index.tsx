@@ -1,15 +1,13 @@
 import React, {Component} from "react";
-import {Animated, ScrollView} from "react-native";
-import {Colors} from "../../../../../theme/colors";
-import {LecturesPageCardStyles} from "../card/styles";
-import {LecturesPageListLoadingStyles} from "./styles";
+import {Animated} from "react-native";
+import {Colors} from "../../../theme/colors";
+import {ListLectureCardLoadingStyles} from "./styles";
 
 interface State {
   skeletonAnimation: Animated.Value;
 }
 
-
-export class LecturesPageListLoading extends Component<any, State> {
+export class ListLectureCardLoading extends Component<any, State> {
 
   state = {
     skeletonAnimation: new Animated.Value(1)
@@ -26,7 +24,7 @@ export class LecturesPageListLoading extends Component<any, State> {
 
   };
 
-  renderCard = (key: number): JSX.Element => {
+  render = () => {
 
     const {
       CardView,
@@ -38,7 +36,7 @@ export class LecturesPageListLoading extends Component<any, State> {
       CardFooterContent,
       CardFooterButton,
       CardFooterText,
-    } = LecturesPageListLoadingStyles;
+    } = ListLectureCardLoadingStyles;
 
     const styles = {
       backgroundColor: this.state.skeletonAnimation.interpolate({
@@ -48,7 +46,7 @@ export class LecturesPageListLoading extends Component<any, State> {
     };
 
     return (
-      <CardView key={key}>
+      <CardView>
         <CardContent>
           <CardLogo source={{}} resizeMode={'stretch'}/>
           <CardDescriptionContent>
@@ -68,19 +66,5 @@ export class LecturesPageListLoading extends Component<any, State> {
 
   };
 
-  render = () => {
-
-    let cards: JSX.Element[] = [];
-
-    for(let i = 0; i < 10; i++)
-      cards.push(this.renderCard(i));
-
-    return (
-      <ScrollView scrollEnabled={false}>
-        { cards }
-      </ScrollView>
-    );
-
-  }
 
 }

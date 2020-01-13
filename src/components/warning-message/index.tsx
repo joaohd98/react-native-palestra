@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import { WarningMessageComponentStyle } from './styles';
-import {TouchableOpacity} from "react-native";
 
 export interface WarningMessageComponentProps {
-  image?: number;
   title?: string;
+  subTitle?: string,
   message?: string;
   buttonText?: string
   onButtonPress?: () => void;
@@ -12,35 +11,54 @@ export interface WarningMessageComponentProps {
 
 export class WarningMessageComponent extends Component<WarningMessageComponentProps> {
 
-  render = () => {
+
+  getButton = () => {
 
     const {
-      View,
-      Image,
-      Title,
-      Message,
+      ButtonTouchable,
       ButtonText
     } = WarningMessageComponentStyle;
 
     const {
-      image,
-      title,
-      message,
       buttonText,
       onButtonPress
     } = this.props;
 
     return (
+      buttonText && onButtonPress ?
+        <ButtonTouchable onPress={onButtonPress}>
+          <ButtonText>{buttonText}</ButtonText>
+        </ButtonTouchable>
+      : null
+    )
+
+
+  };
+
+  render = () => {
+
+    const {
+      View,
+      Container,
+      Title,
+      SubTitle,
+      Message,
+    } = WarningMessageComponentStyle;
+
+    const {
+      title,
+      subTitle,
+      message,
+    } = this.props;
+
+    return (
       <View>
-        { image ? <Image source={image} resizeMode={"stretch"} /> : null }
-        { title ? <Title>{ title }</Title> : null }
-        { message ? <Message>{ message }</Message> : null }
-        { buttonText && onButtonPress ?
-            <TouchableOpacity onPress={onButtonPress}>
-              <ButtonText>{buttonText}</ButtonText>
-            </TouchableOpacity>
-          : null
-        }
+        <Container>
+          { title ? <Title>{title}</Title> : null }
+          { subTitle ? <SubTitle>{subTitle}</SubTitle> : null }
+          { message ? <Message>{ message }</Message> : null }
+          { this.getButton() }
+        </Container>
       </View>
     )
 

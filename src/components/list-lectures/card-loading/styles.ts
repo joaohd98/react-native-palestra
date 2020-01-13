@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
-import {Colors} from '../../../../../theme/colors';
-import {LecturesPageCardStyles} from '../card/styles';
+import {ListLectureStyles} from "../list/styles";
+import {ListLectureCardStyles} from "../card/styles";
+import {Colors} from "../../../theme/colors";
 
 const {
   CardView,
@@ -8,13 +9,12 @@ const {
   CardContent,
   CardDescriptionContent,
   CardText,
-  CardDateHour,
   CardFooterContent,
   CardFooterButton,
   CardFooterText
-} = LecturesPageCardStyles;
+} = ListLectureCardStyles;
 
-export const LecturesPageListLoadingStyles = {
+export const ListLectureCardLoadingStyles = {
   CardView: styled(CardView)``,
   CardLogo: styled(CardLogo)``,
   CardContent: styled(CardContent)``,

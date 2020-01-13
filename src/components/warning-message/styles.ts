@@ -3,27 +3,37 @@ import {Colors} from "../../theme/colors";
 
 export const WarningMessageComponentStyle = {
   View: styled.View`
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
+    margin: 60px auto;
+    width: 90%;
   `,
-  Image: styled.Image`
-    width: 350px;
-    height: 300px;
+  Container: styled.View`
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 2px solid ${Colors.red};
   `,
   Title: styled.Text`
     font-size: 18px;
+    color: ${Colors.red}
     font-weight: bold;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
+    align-self: center;
+  `,
+  SubTitle: styled.Text`
+    font-size: 16px;
+    color: ${Colors.black};
+    margin-bottom: 15px;
   `,
   Message: styled.Text`
-    font-size: 15px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    font-size: 14px;
+    color: ${Colors.gray};
+    font-weight: bold;
+    margin-bottom: 15px;
+  `,
+  ButtonTouchable: styled.TouchableOpacity`
+    align-self: center;
   `,
   ButtonText: styled.Text`
+    font-size: 20px
     color: ${Colors.blue};
     text-decoration: underline;
     text-decoration-color: ${Colors.blue};

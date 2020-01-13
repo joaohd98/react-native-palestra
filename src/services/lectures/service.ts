@@ -1,4 +1,3 @@
-import Config from 'react-native-config';
 import {Service} from "../service";
 import {ServiceResponse} from "../model";
 import {
