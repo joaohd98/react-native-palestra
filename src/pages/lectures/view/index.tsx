@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {View} from "react-native";
+import {Text, View} from "react-native";
 import {connect} from 'react-redux';
 import {StatesReducers} from "../../../redux/reducers";
 import {bindActionCreators, Dispatch} from "redux";
@@ -10,6 +10,7 @@ import {Container} from "../../../theme/components";
 import {LecturesPageHeader} from "./components/header";
 import {LecturesPageModel} from "./model";
 import {ListLecture} from "../../../components/list-lectures/list";
+import Config from "react-native-config";
 
 export class Lecture extends Component<LecturesPageModel.Props> {
 
