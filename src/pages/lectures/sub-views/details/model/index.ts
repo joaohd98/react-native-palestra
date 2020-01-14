@@ -8,9 +8,9 @@ export namespace LectureDetailsPageModel {
     lecture?: LectureResponseModel,
     type?: LectureTypeResponseModel,
     subscription?: SubscribeResponseModel,
-    navigation?: NavigationScreenProp<NavigationState, Props>
+    navigation?: NavigationScreenProp<NavigationState, Props>,
     functions?: {
-      subscribeLecture: () => void,
+      sendParamsSubscription: (lecture: LectureResponseModel, type: LectureTypeResponseModel) => void,
     }
   }
 

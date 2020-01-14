@@ -16,9 +16,11 @@ export class LectureSubscription extends Component<LectureSubscriptionPageModel.
 
   render = () => {
 
+    const {lecture, type} = this.props;
+
     return (
       <ContainerScroll keyboardShouldPersistTaps="handled">
-        <SubHeaderDetailsLectureComponent/>
+        <SubHeaderDetailsLectureComponent lecture={lecture!} type={type!}/>
         <LectureSubscriptionPageFormContainer/>
         <LectureSubscriptionPageFooterButtons/>
       </ContainerScroll>

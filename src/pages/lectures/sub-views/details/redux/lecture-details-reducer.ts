@@ -3,10 +3,13 @@ import {
   LectureDetailsPageActionConst
 } from "./lecture-details-action";
 import {LectureDetailsPageModel} from "../model";
+import {LectureResponseModel, LectureTypeResponseModel} from "../../../../../services/lectures/model";
+import {LectureSubscriptionPageAction} from "../../subscription/redux/lectures-subscription-action";
 
 export const LectureDetailsPageInitialState: LectureDetailsPageModel.Props = {
   functions: {
-    subscribeLecture: () => {},
+    sendParamsSubscription: (lecture: LectureResponseModel, type: LectureTypeResponseModel) =>
+      LectureSubscriptionPageAction.setLectureSubscriptionsTypes(lecture, type),
   }
 };
 

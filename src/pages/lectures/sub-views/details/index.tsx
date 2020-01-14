@@ -10,10 +10,17 @@ import {LectureDetailsPageModel} from "./model";
 import {LectureDetailsPageDescription} from "./components/description";
 import {LectureDetailsPageFooterInformation} from "./components/footer-information";
 import {LectureDetailsPageFooterSubscribe} from "./components/footer-subscribe";
+import {Routes} from "../../../../routes/routes";
 
 export class LectureDetails extends Component<LectureDetailsPageModel.Props> {
 
   static navigationOptions = LectureDetailsPageHeader;
+
+  goToSubscribe = () => {
+    const {lecture, type, functions, navigation} = this.props;
+    functions?.sendParamsSubscription(lecture!, type!);
+    navigation?.navigate(Routes.lectureSubscription);
+  };
 
   render = () => {
 
@@ -25,7 +32,7 @@ export class LectureDetails extends Component<LectureDetailsPageModel.Props> {
         <LectureDetailsPageDescription lecture={lecture!}/>
         { subscription
           ? <LectureDetailsPageFooterInformation subscription={subscription!} navigation={navigation!}/>
-          : <LectureDetailsPageFooterSubscribe navigation={navigation!}/>}
+          : <LectureDetailsPageFooterSubscribe navigation={navigation!} goToSubscribe={this.goToSubscribe}/>}
       </ContainerScroll>
     )
 

@@ -5,7 +5,7 @@ export namespace LectureSubscriptionPageModel {
 
   export interface Props {
     lecture?: LectureResponseModel,
-    types?: LectureTypeResponseModel,
+    type?: LectureTypeResponseModel,
     status?: ServiceStatus,
     functions?: {
       subscribeLecture: () => void,
