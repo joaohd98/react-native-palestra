@@ -8,8 +8,6 @@ import {LectureSubscriptionPageHeader} from "./components/header";
 import {ContainerScroll} from "../../../../theme/components";
 import {LectureSubscriptionPageFooterButtons} from "./components/footer-buttons";
 import {SubHeaderDetailsLectureComponent} from "../../../../components/sub-header-details-lecture";
-import {InputComponent} from "../../../../components/input";
-import {LectureSubscriptionPageInputName} from "./components/input-name";
 import {LectureSubscriptionPageFormContainer} from "./components/form-container";
 
 export class LectureSubscription extends Component<LectureSubscriptionPageModel.Props> {

@@ -7,10 +7,13 @@ import {MySubscriptionsPageReducer} from "../pages/my-subscriptions/view/redux/m
 import {MySubscriptionsPageModel} from "../pages/my-subscriptions/view/model";
 import {LectureSubscriptionPageModel} from "../pages/lectures/sub-views/subscription/model";
 import {LectureSubscriptionPageReducer} from "../pages/lectures/sub-views/subscription/redux/lectures-subscription-reducer";
+import {LectureDetailsPageModel} from "../pages/lectures/sub-views/details/model";
+import {LectureDetailsPageReducer} from "../pages/lectures/sub-views/details/redux/lecture-details-reducer";
 
 export interface StatesReducers {
   lecturesPageInitialState: LecturesPageModel.Props,
   lectureSubscriptionPageInitialState: LectureSubscriptionPageModel.Props,
+  lectureDetailsPageInitialState: LectureDetailsPageModel.Props
   sideMenuInitialState: SideMenuModel.Props,
   mySubscriptionsPageReducer: MySubscriptionsPageModel.Props
 }
@@ -18,6 +21,7 @@ export interface StatesReducers {
 export const Reducers = combineReducers({
   lecturesPageInitialState: LecturesPageReducer,
   lectureSubscriptionPageInitialState: LectureSubscriptionPageReducer,
+  lectureDetailsPageInitialState: LectureDetailsPageReducer,
   sideMenuInitialState: SideMenuReducer,
   mySubscriptionsPageReducer: MySubscriptionsPageReducer
 });
