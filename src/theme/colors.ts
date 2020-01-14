@@ -7,6 +7,11 @@ export class Colors {
   static black = "#000";
   static red = "#dc3545";
   static green = "#B1FCA2";
+  static yellow = "#ffcc00";
+
+  static success = "#28a745";
+  static warning = "#ffc107";
+  static danger = "#dc3545";
 
   static skeleton = [
     "#f2f2f2",

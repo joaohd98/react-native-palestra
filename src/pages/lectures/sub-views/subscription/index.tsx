@@ -9,6 +9,7 @@ import {ContainerScroll} from "../../../../theme/components";
 import {LectureSubscriptionPageFooterButtons} from "./components/footer-buttons";
 import {SubHeaderDetailsLectureComponent} from "../../../../components/sub-header-details-lecture";
 import {InputComponent} from "../../../../components/input";
+import {LectureSubscriptionPageInputName} from "./components/input-name";
 
 export class LectureSubscription extends Component<LectureSubscriptionPageModel.Props> {
 
@@ -19,7 +20,7 @@ export class LectureSubscription extends Component<LectureSubscriptionPageModel.
     return (
       <ContainerScroll keyboardShouldPersistTaps="handled">
         <SubHeaderDetailsLectureComponent/>
-        <InputComponent/>
+        <LectureSubscriptionPageInputName/>
         <LectureSubscriptionPageFooterButtons/>
       </ContainerScroll>
     )

@@ -17,12 +17,14 @@ export const InputComponentStyles = {
   Input: styled.TextInput`
     flex: 1;
     padding: 0px 6px;
-    border: 1px solid ${Colors.black};
+    border: 1.5px solid ${(props: {borderColor: string}) => props.borderColor || Colors.black};
   `,
   ViewWarningMessage: styled.View`
     margin: 10px 10px 5px 10px;
   `,
   ViewTitleWarningMessage: styled.Text`
     font-size: 15px;
+    font-weight: 800;
+    color:  ${(props: {color: string}) => props.color}
   `,
 };
