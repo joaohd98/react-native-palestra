@@ -19,6 +19,7 @@ interface Props {
   lectures?: LectureResponseModel[],
   types?: LectureTypeResponseModel[],
   selectedType?: LectureTypeResponseModel,
+  onPressSeeMore?: (lecture: LectureResponseModel) => void;
   loading?: boolean,
   ruleShowLecture?: (lecture: LectureResponseModel) => boolean,
   listEmptyComponent?: JSX.Element,
@@ -102,7 +103,7 @@ export class ListLecture extends Component<Props, State> {
 
   render = () => {
 
-    const { loading, listEmptyComponent, listFooterComponent } = this.props;
+    const { loading, listEmptyComponent, listFooterComponent, onPressSeeMore } = this.props;
     const { SectionTitle } = ListLectureStyles;
 
     return (
@@ -110,7 +111,7 @@ export class ListLecture extends Component<Props, State> {
         scrollEnabled={!loading}
         sections={this.getSections()!}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({ item }) => loading ? <ListLectureCardLoading/> : <ListLectureCard lecture={item as LectureResponseModel} />}
+        renderItem={({ item }) => loading ? <ListLectureCardLoading/> : <ListLectureCard lecture={item as LectureResponseModel} onPressSeeMore={onPressSeeMore} />}
         renderSectionHeader={({ section: { title } }) => <SectionTitle>{ title }</SectionTitle>}
         ListEmptyComponent={listEmptyComponent}
         ListFooterComponent={listFooterComponent}

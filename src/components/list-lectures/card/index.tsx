@@ -4,9 +4,9 @@ import {LecturesPageCardConst} from "./constants";
 import {images} from "../../../assets";
 import {ListLectureCardStyles} from "./styles";
 
-
 interface Props {
   lecture: LectureResponseModel,
+  onPressSeeMore?: (lecture: LectureResponseModel) => void
 }
 
 export class ListLectureCard extends Component<Props> {
@@ -14,7 +14,8 @@ export class ListLectureCard extends Component<Props> {
   render = () => {
 
     const {
-      lecture
+      lecture,
+      onPressSeeMore
     } = this.props;
 
     const {
@@ -57,7 +58,7 @@ export class ListLectureCard extends Component<Props> {
             </CardDateHour>
             <CardFooterContent>
               <CardText>{ lectureVacancies } {lecture.QtdVagasDisponiveis > 0 ? lecture.QtdVagasDisponiveis : soldOut }</CardText>
-              <CardFooterButton>
+              <CardFooterButton onPress={onPressSeeMore ? () => onPressSeeMore(lecture) : () => {}}>
                 <CardFooterText>{ seeMore }</CardFooterText>
               </CardFooterButton>
             </CardFooterContent>

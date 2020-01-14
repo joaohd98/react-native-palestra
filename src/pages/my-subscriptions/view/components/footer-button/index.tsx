@@ -2,9 +2,10 @@ import React, {Component} from "react";
 import {MySubscriptionsPageFooterButtonStyles} from "./styles";
 import {MySubscriptionsPageFooterButtonConst} from "./constansts";
 import {NavigationScreenProp, NavigationState} from "react-navigation";
+import {MySubscriptionsPageModel} from "../../model";
 
 interface Props {
-  navigation: NavigationScreenProp<NavigationState, Props>
+  navigation: NavigationScreenProp<NavigationState, MySubscriptionsPageModel.Props>
 }
 
 export class MySubscriptionsPageFooterButton extends Component<Props> {

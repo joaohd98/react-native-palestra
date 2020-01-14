@@ -1,12 +1,14 @@
 import {LectureResponseModel, LectureTypeResponseModel} from "../../../../../services/lectures/model";
-import {ServiceStatus} from "../../../../../services/model";
+import {NavigationScreenProp, NavigationState} from "react-navigation";
+import {SubscribeResponseModel} from "../../../../../services/my-subscriptions/model";
 
 export namespace LectureDetailsPageModel {
 
   export interface Props {
     lecture?: LectureResponseModel,
-    types?: LectureTypeResponseModel,
-    status?: ServiceStatus,
+    type?: LectureTypeResponseModel,
+    subscription?: SubscribeResponseModel,
+    navigation?: NavigationScreenProp<NavigationState, Props>
     functions?: {
       subscribeLecture: () => void,
     }

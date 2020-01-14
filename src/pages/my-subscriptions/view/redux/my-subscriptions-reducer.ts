@@ -1,11 +1,14 @@
 import {MySubscriptionsPageModel} from "../model";
 import {MySubscriptionsAction, MySubscriptionsActionConst, MySubscriptionsActionType} from "./my-subscriptions-action";
+import {LectureDetailsPageAction} from "../../../lectures/sub-views/details/redux/lecture-details-action";
 
 export const MySubscriptionsInitialState: MySubscriptionsPageModel.Props = {
   lectures: [],
   subscriptions: [],
   functions: {
     getLecturesTypesSubscriptions: () => MySubscriptionsAction.getLecturesTypesSubscriptions(),
+    sendParamsDetails: (lecture, type, subscription) =>
+      LectureDetailsPageAction.setLectureSubscriptionsTypes(lecture, type, subscription),
   }
 };
 

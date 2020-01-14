@@ -11,6 +11,8 @@ import {ListLecture} from "../../../components/list-lectures/list";
 import {Container} from "../../../theme/components";
 import {MySubscriptionsPageFooterButton} from "./components/footer-button";
 import {MySubscriptionsPageWarningMessage} from "./components/warning-message";
+import {LectureResponseModel} from "../../../services/lectures/model";
+import {Routes} from "../../../routes/routes";
 
 export class MySubscriptions extends Component<MySubscriptionsPageModel.Props> {
 
@@ -23,6 +25,21 @@ export class MySubscriptions extends Component<MySubscriptionsPageModel.Props> {
   callLecturesTypesSubscriptions = () => {
     this.props.functions?.getLecturesTypesSubscriptions();
   };
+
+  sendDetails = (lecture: LectureResponseModel) => {
+
+    const { types, navigation, functions, subscriptions } = this.props;
+
+    functions?.sendParamsDetails(
+      lecture,
+      types?.find(type => type.Codigo === lecture.CodigoTipoCategoria)!,
+      subscriptions?.find(subscription => subscription.CodigoPalestra === lecture.Codigo)!
+    );
+
+    navigation?.navigate(Routes.lecturesDetails);
+
+  };
+
 
   render = () => {
 
@@ -43,15 +60,16 @@ export class MySubscriptions extends Component<MySubscriptionsPageModel.Props> {
       [ServiceStatus.loading]:
         <ListLecture
           loading={true}
-          listFooterComponent={<MySubscriptionsPageFooterButton navigation={navigation}/>}
+          listFooterComponent={<MySubscriptionsPageFooterButton navigation={navigation!}/>}
         />,
       [ServiceStatus.success]:
         <ListLecture
           lectures={lectures!}
           types={types!}
+          onPressSeeMore={lecture => this.sendDetails(lecture)}
           ruleShowLecture={(lecture => subscriptions!.find(subscription => subscription.CodigoPalestra == lecture.Codigo) != undefined)}
           listEmptyComponent={<MySubscriptionsPageWarningMessage hasEmptyList={true}/>}
-          listFooterComponent={<MySubscriptionsPageFooterButton navigation={navigation}/>}
+          listFooterComponent={<MySubscriptionsPageFooterButton navigation={navigation!}/>}
         />,
     };
 

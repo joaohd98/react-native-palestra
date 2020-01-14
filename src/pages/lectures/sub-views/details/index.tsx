@@ -17,12 +17,15 @@ export class LectureDetails extends Component<LectureDetailsPageModel.Props> {
 
   render = () => {
 
+    const { lecture, type, navigation, subscription } = this.props;
+
     return (
       <ContainerScroll>
-        <SubHeaderDetailsLectureComponent/>
-        <LectureDetailsPageDescription/>
-        <LectureDetailsPageFooterSubscribe/>
-        <LectureDetailsPageFooterInformation/>
+        <SubHeaderDetailsLectureComponent lecture={lecture!} type={type!}/>
+        <LectureDetailsPageDescription lecture={lecture!}/>
+        { subscription
+          ? <LectureDetailsPageFooterInformation subscription={subscription!} navigation={navigation!}/>
+          : <LectureDetailsPageFooterSubscribe navigation={navigation!}/>}
       </ContainerScroll>
     )
 

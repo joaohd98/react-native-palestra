@@ -10,7 +10,8 @@ import {Container} from "../../../theme/components";
 import {LecturesPageHeader} from "./components/header";
 import {LecturesPageModel} from "./model";
 import {ListLecture} from "../../../components/list-lectures/list";
-//import Config from "react-native-config";
+import {Routes} from "../../../routes/routes";
+import {LectureResponseModel} from "../../../services/lectures/model";
 
 export class Lecture extends Component<LecturesPageModel.Props> {
 
@@ -22,6 +23,20 @@ export class Lecture extends Component<LecturesPageModel.Props> {
 
   getLectureSubscriptionsTypes = () => {
     this.props.functions?.getLectureSubscriptionsTypes();
+  };
+
+  sendDetails = (lecture: LectureResponseModel) => {
+
+    const { types, navigation, functions, subscriptions } = this.props;
+
+    functions?.sendParamsDetails(
+      lecture,
+      types?.find(type => type.Codigo === lecture.CodigoTipoCategoria)!,
+      subscriptions?.find(subscription => subscription.CodigoPalestra === lecture.Codigo)!
+    );
+
+    navigation?.navigate(Routes.lecturesDetails);
+
   };
 
   render() {
@@ -46,6 +61,7 @@ export class Lecture extends Component<LecturesPageModel.Props> {
         <ListLecture
           lectures={lectures!}
           types={types!}
+          onPressSeeMore={lecture => this.sendDetails(lecture)}
           selectedType={typeSelected!}
           listEmptyComponent={<LecturesPageWarningMessage hasEmptyList={true}/>}
         />,

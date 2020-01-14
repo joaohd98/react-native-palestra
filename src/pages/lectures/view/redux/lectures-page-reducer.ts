@@ -1,6 +1,8 @@
 import {LecturesPageAction, LecturesPageActionConst, LecturesPageActionType} from "./lectures-page-action";
 import {ServiceStatus} from "../../../../services/model";
 import {LecturesPageModel} from "../model";
+import {LectureDetailsPage} from "../../sub-views/details";
+import {LectureDetailsPageAction} from "../../sub-views/details/redux/lecture-details-action";
 
 export const LecturesPageInitialState: LecturesPageModel.Props = {
   lectures: [],
@@ -10,6 +12,8 @@ export const LecturesPageInitialState: LecturesPageModel.Props = {
   status: ServiceStatus.noAction,
   functions: {
     getLectureSubscriptionsTypes: () => LecturesPageAction.getLectureSubscriptionsTypes(),
+    sendParamsDetails: (lecture, type, subscription) =>
+      LectureDetailsPageAction.setLectureSubscriptionsTypes(lecture, type, subscription),
   }
 };
 

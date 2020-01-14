@@ -14,6 +14,7 @@ export namespace MySubscriptionsPageModel {
     navigation?: NavigationScreenProp<NavigationState, Props>
     functions?: {
       getLecturesTypesSubscriptions: () => void,
+      sendParamsDetails: (lecture: LectureResponseModel, type: LectureTypeResponseModel, subscription: SubscribeResponseModel) => void,
     }
   }
 

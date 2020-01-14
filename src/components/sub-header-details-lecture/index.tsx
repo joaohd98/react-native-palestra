@@ -1,9 +1,24 @@
 import React, {Component} from "react";
 import {SubHeaderDetailsLectureComponentStyles} from "./styles";
+import {LectureResponseModel, LectureTypeResponseModel} from "../../services/lectures/model";
+import {SubHeaderDetailsLectureComponentConst} from "./constants";
 
-export class SubHeaderDetailsLectureComponent extends Component {
+interface Props {
+  lecture: LectureResponseModel,
+  type: LectureTypeResponseModel
+}
+
+export class SubHeaderDetailsLectureComponent extends Component<Props> {
 
   render = () => {
+
+    const {lecture, type} = this.props;
+
+    const {
+      speaker,
+      date,
+      hour,
+    } = SubHeaderDetailsLectureComponentConst
 
     const {
       View,
@@ -19,25 +34,25 @@ export class SubHeaderDetailsLectureComponent extends Component {
       <View>
         <ViewType>
           <ViewTextType>
-            Gestão de pessoas
+            { type.Descricao }
           </ViewTextType>
         </ViewType>
         <ViewTitle>
           <ViewTextTitle>
-            Gestao de pessoas por competéncias
+            { lecture.Titulo }
           </ViewTextTitle>
         </ViewTitle>
         <ViewMessage>
           <ViewTextMessage>
-            Palestrante: Maria dos anjos
+            { speaker } { lecture.Palestrante }
           </ViewTextMessage>
         </ViewMessage>
         <ViewMessage>
           <ViewTextMessage>
-            Data: 16/09/2018
+            { date } { lecture.Data }
           </ViewTextMessage>
           <ViewTextMessage>
-            Horário: 19/02/2019
+            { hour } { lecture.Hora }
           </ViewTextMessage>
         </ViewMessage>
       </View>
