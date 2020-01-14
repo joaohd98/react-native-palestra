@@ -6,6 +6,7 @@ export const ButtonGrayComponentStyles = {
     background-color: ${Colors.gray};
     border: ${Colors.black};
     align-self: flex-start;
+    opacity: ${(props: {isDisabled: boolean}) => props.isDisabled ? .5 : 1};
   `,
   TextTouchable: styled.Text`
     align-self: center;

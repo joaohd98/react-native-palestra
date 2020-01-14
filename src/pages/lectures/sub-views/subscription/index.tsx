@@ -11,7 +11,6 @@ import {LectureSubscriptionPageInputName} from "./components/input-name";
 import {LectureSubscriptionPageInputEmail} from "./components/input-email";
 import {LectureSubscriptionPageInputCompany} from "./components/input-company";
 import {LectureSubscriptionPageInputRole} from "./components/input-role";
-import {Text} from "react-native";
 import {SubHeaderDetailsLectureComponent} from "../../../../components/sub-header-details-lecture";
 
 export class LectureSubscription extends Component<LectureSubscriptionPageModel.Props, LectureSubscriptionPageModel.State> {
@@ -20,14 +19,27 @@ export class LectureSubscription extends Component<LectureSubscriptionPageModel.
 
   state = {
     name: { value: "", valid: false},
-    mail: { value: "", valid: false},
-    company: {value: "", valid: false },
-    role: { value: "", valid: false },
+    email: { value: "", valid: false},
+    company: {value: "", valid: false},
+    role: { value: "", valid: false},
+  };
+
+  isFormValid = (): boolean => {
+
+    const {
+      name,
+      email,
+      company,
+      role
+    } = this.state;
+
+    return [name, email, company, role].find(form => !form.valid) === undefined;
+
   };
 
   render = () => {
 
-    const {lecture, type} = this.props;
+    const {lecture, type, navigation} = this.props;
 
     return (
       <ContainerScroll keyboardShouldPersistTaps="handled">
@@ -36,7 +48,7 @@ export class LectureSubscription extends Component<LectureSubscriptionPageModel.
           changeValue={(value, valid) => this.setState({name: {value, valid}}) }
         />
         <LectureSubscriptionPageInputEmail
-          changeValue={(value, valid) => this.setState({mail: {value, valid}}) }
+          changeValue={(value, valid) => this.setState({email: {value, valid}}) }
         />
         <LectureSubscriptionPageInputCompany
           changeValue={(value, valid) => this.setState({company: {value, valid}}) }
@@ -44,7 +56,11 @@ export class LectureSubscription extends Component<LectureSubscriptionPageModel.
         <LectureSubscriptionPageInputRole
           changeValue={(value, valid) => this.setState({role: {value, valid}}) }
         />
-        <LectureSubscriptionPageFooterButtons/>
+        <LectureSubscriptionPageFooterButtons
+          navigation={navigation}
+          isValid={this.isFormValid()}
+          onSubmit={() => {}}
+        />
       </ContainerScroll>
     )
 

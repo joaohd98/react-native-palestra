@@ -6,6 +6,7 @@ interface Props {
   text: string,
   onPress: () => void,
   style?: TouchableOpacityProps,
+  disabled?: boolean
 }
 
 export class ButtonGrayComponent extends Component<Props> {
@@ -19,8 +20,8 @@ export class ButtonGrayComponent extends Component<Props> {
 
     const {
       text,
-      onPress,
-      style
+      style,
+      disabled
     } = this.props;
 
     const {
@@ -29,7 +30,7 @@ export class ButtonGrayComponent extends Component<Props> {
     } = ButtonGrayComponentStyles;
 
     return (
-      <Touchable onPress={this.clickButton} style={style}>
+      <Touchable onPress={this.clickButton} style={style} disabled={disabled} isDisabled={disabled!} >
         <TextTouchable>{ text }</TextTouchable>
       </Touchable>
     )

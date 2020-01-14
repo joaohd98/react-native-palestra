@@ -1,10 +1,24 @@
 import React, {Component} from "react";
 import {LectureSubscriptionPageFooterButtonsStyles} from "./styles";
 import {LectureSubscriptionPageFooterButtonsConst} from "./constants";
+import {NavigationScreenProp, NavigationState} from "react-navigation";
+import {LectureSubscriptionPageModel} from "../../model";
 
-export class LectureSubscriptionPageFooterButtons extends Component {
+interface Props {
+  isValid: boolean,
+  onSubmit: () => void,
+  navigation: NavigationScreenProp<NavigationState, LectureSubscriptionPageModel.Props>
+}
+
+export class LectureSubscriptionPageFooterButtons extends Component<Props> {
 
   render = () => {
+
+    const {
+      isValid,
+      onSubmit,
+      navigation
+    } = this.props;
 
     const {
       ButtonView,
@@ -18,8 +32,8 @@ export class LectureSubscriptionPageFooterButtons extends Component {
 
     return (
       <ButtonView>
-        <Button text={buttonSave} onPress={() => {}}/>
-        <Button text={buttonCancel} onPress={() => {}}/>
+        <Button text={buttonSave} onPress={onSubmit} disabled={!isValid}/>
+        <Button text={buttonCancel} onPress={() => navigation.goBack()}/>
       </ButtonView>
     )
 
