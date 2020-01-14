@@ -1,17 +1,17 @@
 import {LectureResponseModel, LectureTypeResponseModel} from "../../../../services/lectures/model";
 import {ServiceStatus} from "../../../../services/model";
+import {SubscribeResponseModel} from "../../../../services/my-subscriptions/model";
 
 export namespace LecturesPageModel {
 
   export interface Props {
     lectures?: LectureResponseModel[],
-    lecturesTypes?: LectureTypeResponseModel[] | null,
+    types?: LectureTypeResponseModel[],
+    subscriptions?: SubscribeResponseModel[],
+    typeSelected?: LectureTypeResponseModel | null,
     status?: ServiceStatus,
-    lectureTypeSelected?: LectureTypeResponseModel | null
     functions?: {
-      getLectureTypes: () => void,
-      getLectures: () => void,
-      getTypes: () => void,
+      getLectureSubscriptionsTypes: () => void,
     }
   }
 

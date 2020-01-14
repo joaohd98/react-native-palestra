@@ -11,7 +11,7 @@ export namespace MySubscriptionsPageModel {
     subscriptions?: SubscribeResponseModel[],
     types?: LectureTypeResponseModel[],
     status?: ServiceStatus,
-    navigation: NavigationScreenProp<NavigationState, Props>
+    navigation?: NavigationScreenProp<NavigationState, Props>
     functions?: {
       getLecturesTypesSubscriptions: () => void,
     }

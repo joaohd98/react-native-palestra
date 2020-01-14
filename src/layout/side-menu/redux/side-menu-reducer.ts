@@ -1,12 +1,11 @@
 import {SideMenuModel} from "../model";
 import {SideMenuActionConst, SideMenuActionType} from "./side-menu-action";
 import {LecturesPageAction} from "../../../pages/lectures/view/redux/lectures-page-action";
-import {LectureTypeResponseModel} from "../../../services/lectures/model";
 
 export const SideMenuInitialState: SideMenuModel.Props = {
   lectureTypes: [],
   functions: {
-    changeLectureFilter: (type: LectureTypeResponseModel) => LecturesPageAction.changeLectureFilter(type),
+    changeLectureFilter: type => LecturesPageAction.changeLectureFilter(type),
   }
 };
 

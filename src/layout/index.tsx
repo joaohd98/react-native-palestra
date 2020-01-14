@@ -15,9 +15,9 @@ export const Layout = () => {
 
   const drawerNavigator = CreateDrawerNavigator(
     CreateStackNavigator([
-      { name: Routes.lectureSubscription, page: LectureSubscriptionPage },
       { name: Routes.lectures, page: LecturePage },
       { name: Routes.lecturesDetails, page: LectureDetailsPage },
+      { name: Routes.lectureSubscription, page: LectureSubscriptionPage },
       { name: Routes.mySubscriptions, page: MySubscriptionsPage },
     ])
   , SideMenu);

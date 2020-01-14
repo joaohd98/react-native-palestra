@@ -17,36 +17,36 @@ export class Lecture extends Component<LecturesPageModel.Props> {
   static navigationOptions = LecturesPageHeader;
 
   componentDidMount = () => {
-    this.getLectureType();
+    this.getLectureSubscriptionsTypes();
   };
 
-  getLectureType = () => {
-    this.props.functions?.getLectureTypes();
+  getLectureSubscriptionsTypes = () => {
+    this.props.functions?.getLectureSubscriptionsTypes();
   };
 
   render() {
 
-    const { status, lectures, lecturesTypes, lectureTypeSelected } = this.props;
+    const { status, lectures, types, typeSelected } = this.props;
 
     const getElement = {
       [ServiceStatus.noAction]: <View/>,
       [ServiceStatus.noInternetConnection]:
         <LecturesPageWarningMessage
           hasNoInternetConnection={true}
-          onPress={this.getLectureType}
+          onPress={this.getLectureSubscriptionsTypes}
         />,
       [ServiceStatus.exception]:
         <LecturesPageWarningMessage
           hasException={true}
-          onPress={this.getLectureType}
+          onPress={this.getLectureSubscriptionsTypes}
         />,
       [ServiceStatus.loading]:
         <ListLecture loading={true}/>,
       [ServiceStatus.success]:
         <ListLecture
           lectures={lectures!}
-          types={lecturesTypes!}
-          selectedType={lectureTypeSelected!}
+          types={types!}
+          selectedType={typeSelected!}
           listEmptyComponent={<LecturesPageWarningMessage hasEmptyList={true}/>}
         />,
     };
