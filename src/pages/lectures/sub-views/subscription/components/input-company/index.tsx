@@ -4,9 +4,17 @@ import {FormValidators} from "../../../../../../validation/form-validators";
 import {RulesType} from "../../../../../../validation/rules-type";
 import {LectureSubscriptionPageInputCompanyConst} from "./constants";
 
-export class LectureSubscriptionPageInputCompany extends Component {
+interface Props {
+  changeValue: (value: string, valid: boolean) => void,
+}
+
+export class LectureSubscriptionPageInputCompany extends Component<Props> {
 
   render = () => {
+
+    const {
+      changeValue,
+    } = this.props;
 
     const {
       label,
@@ -22,6 +30,7 @@ export class LectureSubscriptionPageInputCompany extends Component {
       <InputComponent
         label={label}
         formMessages={formMessages}
+        changeValue={changeValue}
       />
     )
   }

@@ -9,8 +9,7 @@ interface InputComponentProps {
   label: string,
   value?: string,
   formMessages?: FormValidators[],
-  changeValue?: (value: string) => void;
-  isValid?: (valid: boolean) => void;
+  changeValue?: (value: string, valid: boolean) => void;
 }
 
 enum Status {
@@ -41,13 +40,13 @@ export class InputComponent extends Component<InputComponentProps, State> {
 
   componentDidUpdate(prevProps: Readonly<InputComponentProps>, prevState: Readonly<State>, snapshot?: any): void {
 
-    const {formMessages} = this.props;
+    const {formMessages, changeValue} = this.props;
     const {inputValue, firstInteraction} = this.state;
 
     if(prevState.inputValue !== inputValue || prevState.firstInteraction !== firstInteraction) {
 
       if(!formMessages || formMessages.length === 0)
-        this.setState({status: Status.none});
+        this.setState({status: Status.valid});
 
       else {
 
@@ -58,13 +57,19 @@ export class InputComponent extends Component<InputComponentProps, State> {
 
         for(let validator of formMessages) {
           if (!Rules.validate(validator.type, inputValue)) {
+
             states = {
               status: Status.invalid,
               warningMessage: validator.message
             };
+
             break;
+
           }
+
         }
+
+        changeValue!(inputValue, states.status === Status.valid);
 
         this.setState(states);
 

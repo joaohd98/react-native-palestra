@@ -5,7 +5,7 @@ export const LectureSubscriptionPageFooterButtonsStyles = {
   ButtonView: styled.View`
     flex-direction: row;
     justify-content: space-around;
-    margin-bottom: 20px;
+    margin-top: 40px;
   `,
   Button: styled(ButtonGrayComponent)`
     width: 140px;
