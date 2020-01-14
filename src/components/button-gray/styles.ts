@@ -8,7 +8,8 @@ export const ButtonGrayComponentStyles = {
     align-self: flex-start;
   `,
   TextTouchable: styled.Text`
-    padding: 10px 50px;
+    align-self: center;
+    padding: 10px;
     font-size: 16px;
   `,
 };

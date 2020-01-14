@@ -6,6 +6,7 @@ export class Colors {
   static white = "#FAFAFA";
   static black = "#000";
   static red = "#dc3545";
+  static green = "#B1FCA2";
 
   static skeleton = [
     "#f2f2f2",
