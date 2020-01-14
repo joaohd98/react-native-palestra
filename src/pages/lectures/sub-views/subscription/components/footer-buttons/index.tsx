@@ -1,9 +1,8 @@
 import React, {Component} from "react";
-import {LectureSubscriptionPageModel} from "../../model";
 import {LectureSubscriptionPageFooterButtonsStyles} from "./styles";
 import {LectureSubscriptionPageFooterButtonsConst} from "./constants";
 
-export class LectureSubscriptionPageFooterButtons extends Component<LectureSubscriptionPageModel.Props> {
+export class LectureSubscriptionPageFooterButtons extends Component {
 
   render = () => {
 

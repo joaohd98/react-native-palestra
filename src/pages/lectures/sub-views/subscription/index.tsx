@@ -5,9 +5,10 @@ import {bindActionCreators, Dispatch} from "redux";
 import {connect} from "react-redux";
 import {LectureSubscriptionPageInitialState} from "./redux/lectures-subscription-reducer";
 import {LectureSubscriptionPageHeader} from "./components/header";
-import {Container} from "../../../../theme/components";
+import {ContainerScroll} from "../../../../theme/components";
 import {LectureSubscriptionPageFooterButtons} from "./components/footer-buttons";
 import {SubHeaderDetailsLectureComponent} from "../../../../components/sub-header-details-lecture";
+import {InputComponent} from "../../../../components/input";
 
 export class LectureSubscription extends Component<LectureSubscriptionPageModel.Props> {
 
@@ -16,10 +17,11 @@ export class LectureSubscription extends Component<LectureSubscriptionPageModel.
   render = () => {
 
     return (
-      <Container>
+      <ContainerScroll keyboardShouldPersistTaps="handled">
         <SubHeaderDetailsLectureComponent/>
+        <InputComponent/>
         <LectureSubscriptionPageFooterButtons/>
-      </Container>
+      </ContainerScroll>
     )
 
   }

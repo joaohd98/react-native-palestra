@@ -13,3 +13,8 @@ export const Container = styled.View`
   height: 100%;
   width: 100%;
 `;
+
+export const ContainerScroll = styled.ScrollView`
+  height: 100%;
+  width: 100%;
+`;

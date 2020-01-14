@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {ButtonGrayComponentStyles} from "./styles";
-import { TouchableOpacityProps} from "react-native";
+import {Keyboard, TouchableOpacityProps} from "react-native";
 
 interface Props {
   text: string,
@@ -9,6 +9,11 @@ interface Props {
 }
 
 export class ButtonGrayComponent extends Component<Props> {
+
+  clickButton = () => {
+    Keyboard.dismiss();
+    this.props.onPress();
+  };
 
   render = () => {
 
@@ -24,7 +29,7 @@ export class ButtonGrayComponent extends Component<Props> {
     } = ButtonGrayComponentStyles;
 
     return (
-      <Touchable onPress={onPress} style={style}>
+      <Touchable onPress={this.clickButton} style={style}>
         <TextTouchable>{ text }</TextTouchable>
       </Touchable>
     )
