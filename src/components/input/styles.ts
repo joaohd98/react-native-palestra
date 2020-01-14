@@ -13,6 +13,7 @@ export const InputComponentStyles = {
     font-size: 15px;
     margin-right: 10px;
     align-self: center;
+    width: 70px;
   `,
   Input: styled.TextInput`
     flex: 1;
