@@ -8,6 +8,7 @@ export class Colors {
   static red = "#dc3545";
   static green = "#B1FCA2";
   static yellow = "#ffcc00";
+  static backgroundOpacity = "rgba(0, 0, 0, 0.6)";
 
   static success = "#28a745";
   static warning = "#ffc107";

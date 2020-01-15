@@ -36,7 +36,7 @@ export class LectureSubscriptionPageAction {
   });
 
   static subscribeFetchFinish = (service: ServiceResponse<LectureSubscribeResponseModel>): LectureSubscriptionPageActionType => ({
-    type: LectureSubscriptionPageActionConst.RECEIVE_LECTURE_TYPE,
+    type: LectureSubscriptionPageActionConst.SUBSCRIBE_FETCH_FINISHED,
     payload: {
       status: service.status,
       response: service.response,

@@ -12,6 +12,7 @@ import {LecturesPageModel} from "./model";
 import {ListLecture} from "../../../components/list-lectures/list";
 import {Routes} from "../../../routes/routes";
 import {LectureResponseModel} from "../../../services/lectures/model";
+import {LoadingComponent} from "../../../components/loading";
 
 export class Lecture extends Component<LecturesPageModel.Props> {
 
