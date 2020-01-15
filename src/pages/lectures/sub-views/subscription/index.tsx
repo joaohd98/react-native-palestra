@@ -12,7 +12,6 @@ import {LectureSubscriptionPageInputEmail} from "./components/input-email";
 import {LectureSubscriptionPageInputCompany} from "./components/input-company";
 import {LectureSubscriptionPageInputRole} from "./components/input-role";
 import {SubHeaderDetailsLectureComponent} from "../../../../components/sub-header-details-lecture";
-import {LectureSubscribeRequestModel} from "../../../../services/lectures/model";
 import {LoadingComponent} from "../../../../components/loading";
 import {ServiceStatus} from "../../../../services/model";
 
@@ -26,6 +25,30 @@ export class LectureSubscription extends Component<LectureSubscriptionPageModel.
     company: {value: "", valid: false},
     role: { value: "", valid: false},
   };
+
+  componentDidUpdate(prevProps: Readonly<LectureSubscriptionPageModel.Props>, prevState: Readonly<LectureSubscriptionPageModel.State>, snapshot?: any): void {
+
+    const {status, navigation} = this.props;
+
+    if(prevProps.status !== ServiceStatus.loading && status === ServiceStatus.loading) {
+      navigation?.setParams({
+        hideHeader: true
+      });
+    }
+
+    if(prevProps.status === ServiceStatus.loading && status !== ServiceStatus.loading) {
+
+      navigation?.setParams({
+        hideHeader: false
+      });
+
+      if(status === ServiceStatus.success) {
+
+      }
+
+    }
+
+  }
 
   isFormValid = (): boolean => {
 

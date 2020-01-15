@@ -7,7 +7,7 @@ import {LectureSubscriptionPageModel} from "../../model";
 interface Props {
   isValid: boolean,
   onSubmit: () => void,
-  navigation: NavigationScreenProp<NavigationState, LectureSubscriptionPageModel.Props>
+  navigation: NavigationScreenProp<NavigationState, {hideHeader: boolean}>
 }
 
 export class LectureSubscriptionPageFooterButtons extends Component<Props> {

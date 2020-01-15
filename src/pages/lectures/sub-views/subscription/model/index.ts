@@ -13,7 +13,7 @@ export namespace LectureSubscriptionPageModel {
     type?: LectureTypeResponseModel,
     status?: ServiceStatus,
     response?: LectureSubscribeResponseModel,
-    navigation?: NavigationScreenProp<NavigationState, Props>
+    navigation?: NavigationScreenProp<NavigationState, { hideHeader: boolean }>
     email?: string,
     functions?: {
       subscribeLecture: (subscribe: LectureSubscribeRequestModel) => void,
