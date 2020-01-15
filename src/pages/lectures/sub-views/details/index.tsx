@@ -46,7 +46,7 @@ export class LectureDetails extends Component<LectureDetailsPageModel.Props> {
       <ContainerScroll>
         <SubHeaderDetailsLectureComponent lecture={lecture!} type={type!}/>
         <LectureDetailsPageDescription lecture={lecture!}/>
-        { subscription
+        { subscription || lecture?.QtdVagasDisponiveis! === 0
           ? <LectureDetailsPageFooterInformation
               subscription={subscription!}
               lecture={lecture!}
