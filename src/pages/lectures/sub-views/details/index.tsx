@@ -29,7 +29,6 @@ export class LectureDetails extends Component<LectureDetailsPageModel.Props> {
     if(!prevProps.hasSubscribe && this.props.hasSubscribe) {
       Alert.alert(alertTitle, alertMessage, [{text: alertButtonText}]);
     }
-
   }
 
   goToSubscribe = () => {
@@ -46,7 +45,7 @@ export class LectureDetails extends Component<LectureDetailsPageModel.Props> {
       <ContainerScroll>
         <SubHeaderDetailsLectureComponent lecture={lecture!} type={type!}/>
         <LectureDetailsPageDescription lecture={lecture!}/>
-        { subscription || lecture?.QtdVagasDisponiveis! === 0
+        { (subscription || lecture?.QtdVagasDisponiveis! === 0)
           ? <LectureDetailsPageFooterInformation
               subscription={subscription!}
               lecture={lecture!}
@@ -54,7 +53,6 @@ export class LectureDetails extends Component<LectureDetailsPageModel.Props> {
             />
           : <LectureDetailsPageFooterSubscribe
               navigation={navigation!}
-              hasSubscribe={hasSubscribe!}
               goToSubscribe={this.goToSubscribe}
           />
         }

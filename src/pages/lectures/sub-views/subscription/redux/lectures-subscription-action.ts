@@ -10,6 +10,7 @@ export enum LectureSubscriptionPageActionConst {
   RECEIVE_LECTURE_TYPE = "LecturesSubscriptionPage/RECEIVE_LECTURE_TYPE",
   SUBSCRIBE_FETCH_REQUESTED = "LecturesSubscriptionPage/SUBSCRIBE_LECTURE_FETCH_REQUESTED",
   SUBSCRIBE_FETCH_FINISHED = "LecturesSubscriptionPage/SUBSCRIBE_LECTURE_FETCH_FINISHED",
+  SAVE_EMAIL = "LecturesSubscriptionPage/SAVE_EMAIL"
 }
 
 export interface LectureSubscriptionPageActionType {
@@ -40,6 +41,13 @@ export class LectureSubscriptionPageAction {
     payload: {
       status: service.status,
       response: service.response,
+    }
+  });
+
+  static saveEmail = (email: string): LectureSubscriptionPageActionType => ({
+    type: LectureSubscriptionPageActionConst.SAVE_EMAIL,
+    payload: {
+      email
     }
   });
 

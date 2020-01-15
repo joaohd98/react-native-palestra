@@ -7,6 +7,7 @@ import {LectureResponseModel, LectureTypeResponseModel} from "../../../../../ser
 import {LectureSubscriptionPageAction} from "../../subscription/redux/lectures-subscription-action";
 
 export const LectureDetailsPageInitialState: LectureDetailsPageModel.Props = {
+  hasSubscribe: false,
   functions: {
     sendParamsSubscription: (lecture: LectureResponseModel, type: LectureTypeResponseModel) =>
       LectureSubscriptionPageAction.setLectureSubscriptionsTypes(lecture, type),

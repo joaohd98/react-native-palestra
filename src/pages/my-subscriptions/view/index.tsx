@@ -13,6 +13,7 @@ import {MySubscriptionsPageFooterButton} from "./components/footer-button";
 import {MySubscriptionsPageWarningMessage} from "./components/warning-message";
 import {LectureResponseModel} from "../../../services/lectures/model";
 import {Routes} from "../../../routes/routes";
+import {SubscribeResponseModel} from "../../../services/my-subscriptions/model";
 
 export class MySubscriptions extends Component<MySubscriptionsPageModel.Props> {
 
@@ -26,14 +27,23 @@ export class MySubscriptions extends Component<MySubscriptionsPageModel.Props> {
     this.props.functions?.getLecturesTypesSubscriptions();
   };
 
+  isSubscribe(subscription: SubscribeResponseModel, lecture: LectureResponseModel): boolean {
+
+    const { email } = this.props;
+
+    return subscription.CodigoPalestra === lecture.Codigo && subscription.Email === email
+
+  }
+
+
   sendDetails = (lecture: LectureResponseModel) => {
 
-    const { types, navigation, functions, subscriptions } = this.props;
+    const { types, navigation, functions, subscriptions, email } = this.props;
 
     functions?.sendParamsDetails(
       lecture,
       types?.find(type => type.Codigo === lecture.CodigoTipoCategoria)!,
-      subscriptions?.find(subscription => subscription.CodigoPalestra === lecture.Codigo)!
+      subscriptions?.find(subscription => this.isSubscribe(subscription, lecture))!
     );
 
     navigation?.navigate(Routes.lecturesDetails);
@@ -43,7 +53,7 @@ export class MySubscriptions extends Component<MySubscriptionsPageModel.Props> {
 
   render = () => {
 
-    const { lectures, types, subscriptions, status, navigation } = this.props;
+    const { lectures, types, subscriptions, status, navigation, email } = this.props;
 
     const getElement = {
       [ServiceStatus.noAction]: <View/>,
@@ -67,7 +77,7 @@ export class MySubscriptions extends Component<MySubscriptionsPageModel.Props> {
           lectures={lectures!}
           types={types!}
           onPressSeeMore={lecture => this.sendDetails(lecture)}
-          ruleShowLecture={(lecture => subscriptions!.find(subscription => subscription.CodigoPalestra == lecture.Codigo) != undefined)}
+          ruleShowLecture={lecture => subscriptions?.find(subscription => this.isSubscribe(subscription, lecture)) != undefined}
           listEmptyComponent={<MySubscriptionsPageWarningMessage hasEmptyList={true}/>}
           listFooterComponent={<MySubscriptionsPageFooterButton navigation={navigation!}/>}
         />,
@@ -84,7 +94,10 @@ export class MySubscriptions extends Component<MySubscriptionsPageModel.Props> {
 }
 
 const mapStateToProps = (state: StatesReducers) => {
-  return state.mySubscriptionsPageReducer;
+  return {
+    ...state.mySubscriptionsInitialState,
+    email: state.lectureSubscriptionPageInitialState.email
+  }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

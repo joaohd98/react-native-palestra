@@ -16,6 +16,7 @@ export namespace LectureSubscriptionPageModel {
     navigation?: NavigationScreenProp<NavigationState, { hideHeader: boolean }>
     email?: string,
     functions?: {
+      saveEmail: (email: string) => void,
       subscribeLecture: (subscribe: LectureSubscribeRequestModel) => void,
       openAlertDetails: () => void
     }

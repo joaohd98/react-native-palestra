@@ -31,53 +31,63 @@ export class InputComponent extends Component<InputComponentProps, State> {
 
   state = {
     status: Status.none,
-    inputValue: "",
+    inputValue: this.props.value || "",
     isValid: false,
     hasFocus: false,
     firstInteraction: true,
     warningMessage: "",
   };
 
+  componentDidMount(): void {
+    this.validate();
+  }
+
   componentDidUpdate(prevProps: Readonly<InputComponentProps>, prevState: Readonly<State>, snapshot?: any): void {
+
+    const {inputValue, firstInteraction} = this.state;
+
+    if(prevState.inputValue !== inputValue || prevState.firstInteraction !== firstInteraction) {
+      this.validate()
+    }
+
+  }
+
+  validate = () => {
 
     const {formMessages, changeValue} = this.props;
     const {inputValue, firstInteraction} = this.state;
 
-    if(prevState.inputValue !== inputValue || prevState.firstInteraction !== firstInteraction) {
+    if(!formMessages || formMessages.length === 0)
+      this.setState({status: Status.valid});
 
-      if(!formMessages || formMessages.length === 0)
-        this.setState({status: Status.valid});
+    else {
 
-      else {
+      let states = {
+        status: Status.valid,
+        warningMessage: ""
+      };
 
-        let states = {
-          status: Status.valid,
-          warningMessage: ""
-        };
+      for(let validator of formMessages) {
+        if (!Rules.validate(validator.type, inputValue)) {
 
-        for(let validator of formMessages) {
-          if (!Rules.validate(validator.type, inputValue)) {
+          states = {
+            status: Status.invalid,
+            warningMessage: validator.message
+          };
 
-            states = {
-              status: Status.invalid,
-              warningMessage: validator.message
-            };
-
-            break;
-
-          }
+          break;
 
         }
 
-        changeValue!(inputValue, states.status === Status.valid);
-
-        this.setState(states);
-
       }
+
+      changeValue!(inputValue, states.status === Status.valid);
+
+      this.setState(states);
 
     }
 
-  }
+  };
 
   getWarningMessage = (): JSX.Element => {
 

@@ -63,8 +63,6 @@ export class Service {
 
     } catch (error) {
 
-      console.log(error);
-
       return {
         status: Service.hasConnection(error) ? ServiceStatus.exception : ServiceStatus.noInternetConnection,
       }

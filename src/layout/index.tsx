@@ -4,12 +4,13 @@ import {CreateDrawerNavigator} from "../routes/drawer-navigator";
 import {SideMenu} from "./side-menu";
 import {LecturePage} from "../pages/lectures/view";
 import {Provider} from "react-redux";
-import {store} from "../redux/store";
+import {persistor, store} from "../redux/store";
 import {MySubscriptionsPage} from "../pages/my-subscriptions/view";
 import {LectureDetailsPage} from "../pages/lectures/sub-views/details";
 import {CreateStackNavigator} from "../routes/stack-navigator";
 import {Routes} from "../routes/routes";
 import {LectureSubscriptionPage} from "../pages/lectures/sub-views/subscription";
+import {PersistGate} from "redux-persist/integration/react";
 
 export const Layout = () => {
 
@@ -26,7 +27,9 @@ export const Layout = () => {
 
   return (
     <Provider store={store}>
-      <Layout/>
+      <PersistGate loading={null} persistor={persistor}>
+        <Layout/>
+      </PersistGate>
     </Provider>
   );
 

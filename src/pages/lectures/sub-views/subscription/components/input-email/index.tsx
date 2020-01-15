@@ -6,6 +6,7 @@ import {RulesType} from "../../../../../../validation/rules-type";
 
 interface Props {
   changeValue: (value: string, valid: boolean) => void,
+  value: string
 }
 
 export class LectureSubscriptionPageInputEmail extends Component<Props> {
@@ -14,6 +15,7 @@ export class LectureSubscriptionPageInputEmail extends Component<Props> {
 
     const {
       changeValue,
+      value,
     } = this.props;
 
     const {
@@ -36,6 +38,7 @@ export class LectureSubscriptionPageInputEmail extends Component<Props> {
     return (
       <InputComponent
         label={label}
+        value={value}
         formMessages={formMessages}
         changeValue={changeValue}
       />

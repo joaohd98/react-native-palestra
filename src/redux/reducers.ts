@@ -9,19 +9,29 @@ import {LectureSubscriptionPageModel} from "../pages/lectures/sub-views/subscrip
 import {LectureSubscriptionPageReducer} from "../pages/lectures/sub-views/subscription/redux/lectures-subscription-reducer";
 import {LectureDetailsPageModel} from "../pages/lectures/sub-views/details/model";
 import {LectureDetailsPageReducer} from "../pages/lectures/sub-views/details/redux/lecture-details-reducer";
+import {persistReducer} from "redux-persist";
+import AsyncStorage from '@react-native-community/async-storage';
 
 export interface StatesReducers {
   lecturesPageInitialState: LecturesPageModel.Props,
   lectureSubscriptionPageInitialState: LectureSubscriptionPageModel.Props,
   lectureDetailsPageInitialState: LectureDetailsPageModel.Props
   sideMenuInitialState: SideMenuModel.Props,
-  mySubscriptionsPageReducer: MySubscriptionsPageModel.Props
+  mySubscriptionsInitialState: MySubscriptionsPageModel.Props
 }
+
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+  whitelist: ['email']
+};
+
+const lectureSubscriptionPersistedReducer = persistReducer(persistConfig, LectureSubscriptionPageReducer);
 
 export const Reducers = combineReducers({
   lecturesPageInitialState: LecturesPageReducer,
-  lectureSubscriptionPageInitialState: LectureSubscriptionPageReducer,
+  lectureSubscriptionPageInitialState: lectureSubscriptionPersistedReducer,
   lectureDetailsPageInitialState: LectureDetailsPageReducer,
   sideMenuInitialState: SideMenuReducer,
-  mySubscriptionsPageReducer: MySubscriptionsPageReducer
+  mySubscriptionsInitialState: MySubscriptionsPageReducer,
 });

@@ -12,7 +12,7 @@ import {LecturesPageModel} from "./model";
 import {ListLecture} from "../../../components/list-lectures/list";
 import {Routes} from "../../../routes/routes";
 import {LectureResponseModel} from "../../../services/lectures/model";
-import {LoadingComponent} from "../../../components/loading";
+import {SubscribeResponseModel} from "../../../services/my-subscriptions/model";
 
 export class Lecture extends Component<LecturesPageModel.Props> {
 
@@ -26,6 +26,14 @@ export class Lecture extends Component<LecturesPageModel.Props> {
     this.props.functions?.getLectureSubscriptionsTypes();
   };
 
+  isSubscribe(subscription: SubscribeResponseModel, lecture: LectureResponseModel): boolean {
+
+    const { email } = this.props;
+
+    return subscription.CodigoPalestra === lecture.Codigo && subscription.Email === email
+
+  }
+
   sendDetails = (lecture: LectureResponseModel) => {
 
     const { types, navigation, functions, subscriptions } = this.props;
@@ -33,7 +41,7 @@ export class Lecture extends Component<LecturesPageModel.Props> {
     functions?.sendParamsDetails(
       lecture,
       types?.find(type => type.Codigo === lecture.CodigoTipoCategoria)!,
-      subscriptions?.find(subscription => subscription.CodigoPalestra === lecture.Codigo)!
+      subscriptions?.find(subscription => this.isSubscribe(subscription, lecture))!
     );
 
     navigation?.navigate(Routes.lecturesDetails);
@@ -80,7 +88,10 @@ export class Lecture extends Component<LecturesPageModel.Props> {
 
 
 const mapStateToProps = (state: StatesReducers) => {
-  return state.lecturesPageInitialState;
+  return {
+    ...state.lecturesPageInitialState,
+    email: state.lectureSubscriptionPageInitialState.email
+  }
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

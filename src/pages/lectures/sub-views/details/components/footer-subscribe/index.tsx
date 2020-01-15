@@ -6,7 +6,6 @@ import {LectureDetailsPageModel} from "../../model";
 
 interface Props {
   goToSubscribe: () => void
-  hasSubscribe: boolean
   navigation: NavigationScreenProp<NavigationState, LectureDetailsPageModel.Props>
 }
 
@@ -14,7 +13,8 @@ export class LectureDetailsPageFooterSubscribe extends Component<Props> {
 
   render = () => {
 
-    const {navigation, goToSubscribe, hasSubscribe} = this.props;
+    const hasSubscribe = false;
+    const {navigation, goToSubscribe} = this.props;
     const {ButtonView, Button, Text} = LectureDetailsPageFooterSubscribeStyles;
     const {buttonAdd, buttonBack, messageSubscribeSuccess} = LectureDetailsPageFooterSubscribeConst;
 

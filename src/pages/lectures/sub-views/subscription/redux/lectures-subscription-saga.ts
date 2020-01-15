@@ -5,7 +5,6 @@ import {LectureSubscriptionPageAction, LectureSubscriptionPageActionConst} from 
 function *subscribeLecture(request: any) {
 
   const response = yield call(() => LecturesService.lectureSubscribe(request.payload.subscribe));
-  console.log(response);
 
   yield put(LectureSubscriptionPageAction.subscribeFetchFinish(response));
 

@@ -11,7 +11,8 @@ export const LectureSubscriptionPageInitialState: LectureSubscriptionPageModel.P
   status: ServiceStatus.noAction,
   functions: {
     subscribeLecture: (subscribe) => LectureSubscriptionPageAction.subscribeFetchRequest(subscribe),
-    openAlertDetails: () => LectureDetailsPageAction.changeHasSubscribe()
+    openAlertDetails: () => LectureDetailsPageAction.changeHasSubscribe(),
+    saveEmail: email => LectureSubscriptionPageAction.saveEmail(email)
   }
 };
 
@@ -44,6 +45,15 @@ export const LectureSubscriptionPageReducer = (state = LectureSubscriptionPageIn
         ...state,
         status: action.payload.status,
         response: action.payload.response
+      }
+
+    }
+
+    case LectureSubscriptionPageActionConst.SAVE_EMAIL: {
+
+      return {
+        ...state,
+        email: action.payload.email
       }
 
     }

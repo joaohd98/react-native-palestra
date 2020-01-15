@@ -24,13 +24,14 @@ export class LectureSubscription extends Component<LectureSubscriptionPageModel.
 
   state = {
     name: { value: "", valid: false},
-    email: { value: "", valid: false},
+    email: { value: this.props.email || "", valid: this.props.email !== undefined},
     company: {value: "", valid: false},
     role: { value: "", valid: false},
   };
 
   componentDidUpdate(prevProps: Readonly<LectureSubscriptionPageModel.Props>, prevState: Readonly<LectureSubscriptionPageModel.State>, snapshot?: any): void {
 
+    const {email} = this.state;
     const {status, navigation, response, functions} = this.props;
 
     if(prevProps.status !== ServiceStatus.loading && status === ServiceStatus.loading) {
@@ -46,6 +47,7 @@ export class LectureSubscription extends Component<LectureSubscriptionPageModel.
       });
 
       if(status === ServiceStatus.success && response!.status === 0) {
+        functions?.saveEmail(email.value);
         functions?.openAlertDetails();
         navigation?.goBack();
       }
@@ -129,7 +131,10 @@ export class LectureSubscription extends Component<LectureSubscriptionPageModel.
 
   render = () => {
 
+    const {email} = this.state;
+
     const {lecture, type, navigation, status} = this.props;
+
 
     return (
       <Container>
@@ -139,6 +144,7 @@ export class LectureSubscription extends Component<LectureSubscriptionPageModel.
             changeValue={(value, valid) => this.setState({name: {value, valid}}) }
           />
           <LectureSubscriptionPageInputEmail
+            value={email.value}
             changeValue={(value, valid) => this.setState({email: {value, valid}}) }
           />
           <LectureSubscriptionPageInputCompany

@@ -1,11 +1,18 @@
-import {applyMiddleware, createStore} from "redux";
+import {applyMiddleware, createStore, Store} from "redux";
+import { persistStore, persistReducer } from 'redux-persist'
 import {Reducers} from './reducers';
 import {rootSaga, sagaMiddleware} from './saga';
+import {AsyncStorage} from 'react-native';
 
-const store = createStore(Reducers, applyMiddleware(
+const store: Store = createStore(Reducers, applyMiddleware(
   sagaMiddleware,
 ));
 
 sagaMiddleware.run(rootSaga);
 
-export { store };
+const persistor = persistStore(store);
+
+export {
+  store,
+  persistor
+};
