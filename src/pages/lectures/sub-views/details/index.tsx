@@ -42,13 +42,11 @@ export class LectureDetails extends Component<LectureDetailsPageModel.Props> {
 
     const { lecture, type, navigation, subscription, hasSubscribe} = this.props;
 
-    console.log(hasSubscribe);
-
     return (
       <ContainerScroll>
         <SubHeaderDetailsLectureComponent lecture={lecture!} type={type!}/>
         <LectureDetailsPageDescription lecture={lecture!}/>
-        { false
+        { subscription
           ? <LectureDetailsPageFooterInformation
               subscription={subscription!}
               lecture={lecture!}
