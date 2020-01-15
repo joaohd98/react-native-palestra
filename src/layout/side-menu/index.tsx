@@ -38,7 +38,7 @@ export class SideMenuPure extends Component<Props> {
     if(!lectureTypes || lectureTypes.length === 0)
       return <></>;
 
-    for(let type of lectureTypes!) {
+    for(let type of lectureTypes) {
 
       elements.push(
         <ViewSubList key={type.Codigo}>

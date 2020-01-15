@@ -1,4 +1,5 @@
 export const LectureDetailsPageFooterSubscribeConst = {
   buttonAdd: "Inscrever-se",
-  buttonBack: "Voltar"
+  buttonBack: "Voltar",
+  messageSubscribeSuccess: "Inscrição realizada"
 };

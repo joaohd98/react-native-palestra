@@ -32,7 +32,11 @@ export class LecturesService extends Service {
 
     return LecturesService.makePostRequest<LectureSubscribeResponseModel, LectureSubscribeRequestModel>(
       LecturesService.getUrl(serviceURL.lectureSubscribe),
-      request
+      request,
+      {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
     );
 
   };

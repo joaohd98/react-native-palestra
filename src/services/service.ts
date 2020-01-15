@@ -5,7 +5,7 @@ import { API_URL } from 'react-native-dotenv'
 export class Service {
 
   static getUrl = (path: string) => {
-    return "https://palestra-back-end.herokuapp.com/" + path;
+    return API_URL + path;
   };
 
   static makeGetRequest  = async <Response, Request = null>(url: string, parameters: Request, header: HeadersInit_ = {}): Promise<ServiceResponse<Response>> => {
@@ -46,15 +46,13 @@ export class Service {
 
     try {
 
-      console.log(url);
-
       let init: any = {
         method,
         headers,
       };
 
       if(method !== "GET")
-        init = {...init, body};
+        init = {...init, body: JSON.stringify(body)};
 
       let response = await fetch(url, init);
 

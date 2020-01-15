@@ -4,23 +4,39 @@ import {LectureDetailsPageFooterInformationStyles} from "./styles";
 import {SubscribeResponseModel} from "../../../../../../services/my-subscriptions/model";
 import {NavigationScreenProp, NavigationState} from "react-navigation";
 import {LectureDetailsPageModel} from "../../model";
+import {LectureResponseModel} from "../../../../../../services/lectures/model";
 
 interface Props {
+  lecture: LectureResponseModel,
   subscription: SubscribeResponseModel,
   navigation: NavigationScreenProp<NavigationState, LectureDetailsPageModel.Props>
 }
 
 export class LectureDetailsPageFooterInformation extends Component<Props> {
 
+  getMessage = (): string => {
+
+    const { message,  messageSoldOff } = LectureDetailsPageFooterInformationConst;
+
+    const {lecture, subscription } = this.props;
+
+    if(lecture.QtdVagasDisponiveis === 0)
+      return messageSoldOff;
+
+    else
+      return `${message} ${subscription.DataCadastro} ${subscription.HoraCadastro}`;
+
+  };
+
   render = () => {
 
-    const { subscription, navigation } = this.props;
+    const { lecture, navigation } = this.props;
     const {View, Text, Button } = LectureDetailsPageFooterInformationStyles;
-    const { message, button } = LectureDetailsPageFooterInformationConst;
+    const { button } = LectureDetailsPageFooterInformationConst;
 
     return (
       <View>
-        <Text>{`${message} ${subscription.DataCadastro} ${subscription.HoraCadastro}`}</Text>
+        <Text soldOff={lecture.QtdVagasDisponiveis === 0}>{ this.getMessage() }</Text>
         <Button text={button} onPress={() => navigation.goBack()}/>
       </View>
     )

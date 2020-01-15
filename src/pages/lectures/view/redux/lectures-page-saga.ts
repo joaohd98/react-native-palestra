@@ -18,7 +18,7 @@ function *getLecturesAndTypes() {
 
   const result: ServiceResponse<{ lectures: LectureResponseModel[], types: LectureTypeResponseModel[], subscriptions: SubscribeResponseModel[] }> = {
     status: Helpers.checkStatusMultipleResponse([lectures, types, subscriptions]),
-    response: {lectures: lectures.response!, types: types.response!, subscriptions: subscriptions.response}
+    response: {lectures: lectures.response!, types: types.response!, subscriptions: subscriptions.response!}
   };
 
   yield all([
