@@ -30,7 +30,7 @@ export class LecturesService extends Service {
 
   static lectureSubscribe = (request: LectureSubscribeRequestModel): Promise<ServiceResponse<LectureSubscribeResponseModel>> => {
 
-    return LecturesService.makeGetRequest<LectureSubscribeResponseModel, LectureSubscribeRequestModel>(
+    return LecturesService.makePostRequest<LectureSubscribeResponseModel, LectureSubscribeRequestModel>(
       LecturesService.getUrl(serviceURL.lectureSubscribe),
       request
     );

@@ -12,6 +12,7 @@ import {LectureSubscriptionPageInputEmail} from "./components/input-email";
 import {LectureSubscriptionPageInputCompany} from "./components/input-company";
 import {LectureSubscriptionPageInputRole} from "./components/input-role";
 import {SubHeaderDetailsLectureComponent} from "../../../../components/sub-header-details-lecture";
+import {LectureSubscribeRequestModel} from "../../../../services/lectures/model";
 
 export class LectureSubscription extends Component<LectureSubscriptionPageModel.Props, LectureSubscriptionPageModel.State> {
 
@@ -37,6 +38,29 @@ export class LectureSubscription extends Component<LectureSubscriptionPageModel.
 
   };
 
+  submitValue = () => {
+
+    const {lecture, functions} = this.props;
+
+    const {
+      name,
+      email,
+      company,
+      role
+    } = this.state;
+
+    const form = {
+      CodigoPalestra: lecture?.Codigo!,
+      Nome: name.value,
+      Cargo: role.value,
+      Email: email.value,
+      Empresa: company.value
+    };
+
+    functions?.subscribeLecture(form);
+
+  };
+
   render = () => {
 
     const {lecture, type, navigation} = this.props;
@@ -57,9 +81,9 @@ export class LectureSubscription extends Component<LectureSubscriptionPageModel.
           changeValue={(value, valid) => this.setState({role: {value, valid}}) }
         />
         <LectureSubscriptionPageFooterButtons
-          navigation={navigation}
+          navigation={navigation!}
           isValid={this.isFormValid()}
-          onSubmit={() => {}}
+          onSubmit={this.submitValue}
         />
       </ContainerScroll>
     )

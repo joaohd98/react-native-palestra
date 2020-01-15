@@ -1,11 +1,15 @@
 import {ServiceStatus} from "../../../../../services/model";
-import {LectureSubscriptionPageActionConst, LectureSubscriptionPageActionType} from "./lectures-subscription-action";
+import {
+  LectureSubscriptionPageAction,
+  LectureSubscriptionPageActionConst,
+  LectureSubscriptionPageActionType
+} from "./lectures-subscription-action";
 import {LectureSubscriptionPageModel} from "../model";
 
 export const LectureSubscriptionPageInitialState: LectureSubscriptionPageModel.Props = {
   status: ServiceStatus.noAction,
   functions: {
-    subscribeLecture: () => {},
+    subscribeLecture: (subscribe) => LectureSubscriptionPageAction.subscribeFetchRequest(subscribe),
   }
 };
 
@@ -22,7 +26,26 @@ export const LectureSubscriptionPageReducer = (state = LectureSubscriptionPageIn
       }
 
     }
-    
+
+    case LectureSubscriptionPageActionConst.SUBSCRIBE_FETCH_REQUESTED: {
+
+      return {
+        ...state,
+        status: action.payload.status,
+      }
+
+    }
+
+    case LectureSubscriptionPageActionConst.SUBSCRIBE_FETCH_FINISHED: {
+
+      return {
+        ...state,
+        status: action.payload.status,
+        response: action.payload.response
+      }
+
+    }
+
     default: return state;
 
   }

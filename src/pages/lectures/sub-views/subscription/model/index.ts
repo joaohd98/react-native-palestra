@@ -1,4 +1,8 @@
-import {LectureResponseModel, LectureTypeResponseModel} from "../../../../../services/lectures/model";
+import {
+  LectureResponseModel,
+  LectureSubscribeRequestModel, LectureSubscribeResponseModel,
+  LectureTypeResponseModel
+} from "../../../../../services/lectures/model";
 import {ServiceStatus} from "../../../../../services/model";
 import {NavigationScreenProp, NavigationState} from "react-navigation";
 
@@ -8,10 +12,11 @@ export namespace LectureSubscriptionPageModel {
     lecture?: LectureResponseModel,
     type?: LectureTypeResponseModel,
     status?: ServiceStatus,
-    navigation: NavigationScreenProp<NavigationState, Props>
+    response?: LectureSubscribeResponseModel,
+    navigation?: NavigationScreenProp<NavigationState, Props>
     email?: string,
     functions?: {
-      subscribeLecture: () => void,
+      subscribeLecture: (subscribe: LectureSubscribeRequestModel) => void,
     }
   }
 
