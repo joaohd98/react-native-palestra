@@ -53,6 +53,7 @@ export class LectureDetails extends Component<LectureDetailsPageModel.Props> {
             />
           : <LectureDetailsPageFooterSubscribe
               navigation={navigation!}
+              hasSubscribe={hasSubscribe!}
               goToSubscribe={this.goToSubscribe}
           />
         }

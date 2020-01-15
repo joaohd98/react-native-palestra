@@ -14,13 +14,25 @@ import {Routes} from "../../../routes/routes";
 import {LectureResponseModel} from "../../../services/lectures/model";
 import {SubscribeResponseModel} from "../../../services/my-subscriptions/model";
 
-export class Lecture extends Component<LecturesPageModel.Props> {
+export class Lecture extends Component<LecturesPageModel.Props, LecturesPageModel.State> {
 
   static navigationOptions = LecturesPageHeader;
 
   componentDidMount = () => {
     this.getLectureSubscriptionsTypes();
+
+    const { navigation } = this.props;
+
+    this.setState({
+      focusListener: navigation!.addListener('didFocus', () => this.getLectureSubscriptionsTypes())
+    }) ;
+
+
   };
+
+  componentWillUnmount() {
+    this.state.focusListener.remove();
+  }
 
   getLectureSubscriptionsTypes = () => {
     this.props.functions?.getLectureSubscriptionsTypes();
@@ -47,6 +59,8 @@ export class Lecture extends Component<LecturesPageModel.Props> {
     navigation?.navigate(Routes.lecturesDetails);
 
   };
+
+
 
   render() {
 

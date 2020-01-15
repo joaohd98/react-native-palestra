@@ -25,6 +25,7 @@ export const LectureDetailsPageReducer = (state = LectureDetailsPageInitialState
         lecture: action.payload.lecture,
         type: action.payload.type,
         subscription: action.payload.subscription,
+        hasSubscribe: action.payload.hasSubscribe
       }
 
     }

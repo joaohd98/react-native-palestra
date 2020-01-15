@@ -22,4 +22,8 @@ export namespace LecturesPageModel {
     }
   }
 
+  export interface State {
+    focusListener: any;
+  }
+
 }

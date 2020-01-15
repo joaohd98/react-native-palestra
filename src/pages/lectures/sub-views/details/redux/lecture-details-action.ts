@@ -19,7 +19,8 @@ export class LectureDetailsPageAction {
     payload: {
       lecture,
       type,
-      subscription
+      subscription,
+      hasSubscribe: false
     }
   });
 
