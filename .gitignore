@@ -22,6 +22,7 @@ DerivedData
 *.xcuserstate
 project.xcworkspace
 
+
 # Android/IntelliJ
 #
 build/
@@ -62,8 +63,3 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
-
-# react-native-config codegen
-ios/tmp.xcconfig
-
-
