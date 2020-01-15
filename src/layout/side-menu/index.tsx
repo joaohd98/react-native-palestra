@@ -35,7 +35,7 @@ export class SideMenuPure extends Component<Props> {
 
     let elements: JSX.Element[] = [];
 
-    if(lectureTypes?.length === 0)
+    if(!lectureTypes || lectureTypes.length === 0)
       return <></>;
 
     for(let type of lectureTypes!) {
