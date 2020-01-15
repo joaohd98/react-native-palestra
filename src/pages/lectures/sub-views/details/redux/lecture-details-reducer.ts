@@ -28,6 +28,15 @@ export const LectureDetailsPageReducer = (state = LectureDetailsPageInitialState
 
     }
 
+    case LectureDetailsPageActionConst.CHANGED_HAS_SUBSCRIBED: {
+
+      return {
+        ...state,
+        hasSubscribe: action.payload.hasSubscribe
+      }
+
+    }
+
     default: return state;
 
   }

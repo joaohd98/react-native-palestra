@@ -4,6 +4,7 @@ import {SubscribeResponseModel} from "../../../../../services/my-subscriptions/m
 
 export enum LectureDetailsPageActionConst {
   RECEIVE_LECTURE_SUBSCRIBE_TYPE = "LecturesDetailsPage/RECEIVE_LECTURE_SUBSCRIBE_TYPE",
+  CHANGED_HAS_SUBSCRIBED = "LecturesDetailsPage/CHANGED_HAS_SUBSCRIBED"
 }
 
 export interface LectureDetailsPageActionType {
@@ -19,6 +20,14 @@ export class LectureDetailsPageAction {
       lecture,
       type,
       subscription
+    }
+  });
+
+
+  static changeHasSubscribe = (): LectureDetailsPageActionType => ({
+    type: LectureDetailsPageActionConst.CHANGED_HAS_SUBSCRIBED,
+    payload: {
+      hasSubscribe: true,
     }
   });
 

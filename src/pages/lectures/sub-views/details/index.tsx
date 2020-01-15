@@ -11,10 +11,26 @@ import {LectureDetailsPageDescription} from "./components/description";
 import {LectureDetailsPageFooterInformation} from "./components/footer-information";
 import {LectureDetailsPageFooterSubscribe} from "./components/footer-subscribe";
 import {Routes} from "../../../../routes/routes";
+import {LectureDetailsConst} from "./constants";
+import {Alert} from "react-native";
 
 export class LectureDetails extends Component<LectureDetailsPageModel.Props> {
 
   static navigationOptions = LectureDetailsPageHeader;
+
+  componentDidUpdate(prevProps: Readonly<LectureDetailsPageModel.Props>, prevState: Readonly<{}>, snapshot?: any): void {
+
+    const {
+      alertTitle,
+      alertMessage,
+      alertButtonText
+    } = LectureDetailsConst;
+
+    if(!prevProps.hasSubscribe && this.props.hasSubscribe) {
+      Alert.alert(alertTitle, alertMessage, [{text: alertButtonText}]);
+    }
+
+  }
 
   goToSubscribe = () => {
     const {lecture, type, functions, navigation} = this.props;
@@ -24,7 +40,7 @@ export class LectureDetails extends Component<LectureDetailsPageModel.Props> {
 
   render = () => {
 
-    const { lecture, type, navigation, subscription } = this.props;
+    const { lecture, type, navigation, subscription, hasSubscribe} = this.props;
 
     return (
       <ContainerScroll>
@@ -32,7 +48,7 @@ export class LectureDetails extends Component<LectureDetailsPageModel.Props> {
         <LectureDetailsPageDescription lecture={lecture!}/>
         { subscription
           ? <LectureDetailsPageFooterInformation subscription={subscription!} navigation={navigation!}/>
-          : <LectureDetailsPageFooterSubscribe navigation={navigation!} goToSubscribe={this.goToSubscribe}/>}
+          : <LectureDetailsPageFooterSubscribe navigation={navigation!} hasSubscribe={hasSubscribe!} goToSubscribe={this.goToSubscribe}/>}
       </ContainerScroll>
     )
 

@@ -17,6 +17,7 @@ export namespace LectureSubscriptionPageModel {
     email?: string,
     functions?: {
       subscribeLecture: (subscribe: LectureSubscribeRequestModel) => void,
+      openAlertDetails: () => void
     }
   }
 

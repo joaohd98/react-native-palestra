@@ -5,7 +5,7 @@ import { API_URL } from 'react-native-dotenv'
 export class Service {
 
   static getUrl = (path: string) => {
-    return API_URL + path;
+    return "https://palestra-back-end.herokuapp.com/" + path;
   };
 
   static makeGetRequest  = async <Response, Request = null>(url: string, parameters: Request, header: HeadersInit_ = {}): Promise<ServiceResponse<Response>> => {
@@ -46,6 +46,8 @@ export class Service {
 
     try {
 
+      console.log(url);
+
       let init: any = {
         method,
         headers,
@@ -62,6 +64,8 @@ export class Service {
       }
 
     } catch (error) {
+
+      console.log(error);
 
       return {
         status: Service.hasConnection(error) ? ServiceStatus.exception : ServiceStatus.noInternetConnection,

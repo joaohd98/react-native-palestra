@@ -5,11 +5,13 @@ import {
   LectureSubscriptionPageActionType
 } from "./lectures-subscription-action";
 import {LectureSubscriptionPageModel} from "../model";
+import {LectureDetailsPageAction} from "../../details/redux/lecture-details-action";
 
 export const LectureSubscriptionPageInitialState: LectureSubscriptionPageModel.Props = {
   status: ServiceStatus.noAction,
   functions: {
     subscribeLecture: (subscribe) => LectureSubscriptionPageAction.subscribeFetchRequest(subscribe),
+    openAlertDetails: () => LectureDetailsPageAction.changeHasSubscribe()
   }
 };
 

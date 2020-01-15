@@ -24,5 +24,5 @@ export interface LectureSubscribeRequestModel {
 }
 
 export interface LectureSubscribeResponseModel {
-  status: number
+  status: 0 | 1 | 2 | 3
 }

@@ -14,6 +14,8 @@ import {LectureSubscriptionPageInputRole} from "./components/input-role";
 import {SubHeaderDetailsLectureComponent} from "../../../../components/sub-header-details-lecture";
 import {LoadingComponent} from "../../../../components/loading";
 import {ServiceStatus} from "../../../../services/model";
+import {LectureSubscribeResponseModel} from "../../../../services/lectures/model";
+import {LectureSubscriptionConst} from "./constants";
 import {Alert} from "react-native";
 
 export class LectureSubscription extends Component<LectureSubscriptionPageModel.Props, LectureSubscriptionPageModel.State> {
@@ -29,7 +31,7 @@ export class LectureSubscription extends Component<LectureSubscriptionPageModel.
 
   componentDidUpdate(prevProps: Readonly<LectureSubscriptionPageModel.Props>, prevState: Readonly<LectureSubscriptionPageModel.State>, snapshot?: any): void {
 
-    const {status, navigation, response} = this.props;
+    const {status, navigation, response, functions} = this.props;
 
     if(prevProps.status !== ServiceStatus.loading && status === ServiceStatus.loading) {
       navigation?.setParams({
@@ -43,24 +45,49 @@ export class LectureSubscription extends Component<LectureSubscriptionPageModel.
         hideHeader: false
       });
 
-      if(status === ServiceStatus.success) {
-
+      if(status === ServiceStatus.success && response!.status === 0) {
+        functions?.openAlertDetails();
+        navigation?.goBack();
       }
 
       else
-        this.showAlert(status!);
+        this.showAlert(status!, response!);
 
     }
 
   }
 
-  showAlert = (status: ServiceStatus) => {
+  showAlert = (status: ServiceStatus, response: LectureSubscribeResponseModel) => {
 
-    Alert.alert(
-      'Alert Title',
-      'My Alert Msg',
-      [{text: 'OK'},],
-    );
+    const {
+      title,
+      messageException,
+      messageNoInternet,
+      messageAlreadySubscribed,
+      messageLectureNotFound,
+      messageNoVacancies,
+      buttonText
+    } = LectureSubscriptionConst;
+
+    let message = "";
+
+    if(status === ServiceStatus.success) {
+
+      const getMessage = {
+        0: "",
+        1: messageNoVacancies,
+        2: messageLectureNotFound,
+        3: messageAlreadySubscribed,
+      };
+
+      message = getMessage[response.status];
+
+    }
+
+    else
+      message = status === ServiceStatus.exception ? messageException : messageNoInternet;
+
+    Alert.alert(title, message, [{text: buttonText}]);
 
   };
 
