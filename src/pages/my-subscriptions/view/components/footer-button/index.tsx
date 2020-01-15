@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import {MySubscriptionsPageFooterButtonStyles} from "./styles";
 import {MySubscriptionsPageFooterButtonConst} from "./constansts";
-import {NavigationScreenProp, NavigationState} from "react-navigation";
 import {MySubscriptionsPageModel} from "../../model";
+import {NavigationStackProp, NavigationStackState} from "react-navigation-stack";
 
 interface Props {
-  navigation: NavigationScreenProp<NavigationState, MySubscriptionsPageModel.Props>
+  navigation: NavigationStackProp<NavigationStackState, MySubscriptionsPageModel.Props>
 }
 
 export class MySubscriptionsPageFooterButton extends Component<Props> {
@@ -16,7 +16,7 @@ export class MySubscriptionsPageFooterButton extends Component<Props> {
     const { ButtonGray } = MySubscriptionsPageFooterButtonStyles;
     const { back } = MySubscriptionsPageFooterButtonConst;
 
-    return <ButtonGray text={back} onPress={() => navigation.goBack()}/>;
+    return <ButtonGray text={back} onPress={() => navigation.popToTop()}/>;
 
   }
 
