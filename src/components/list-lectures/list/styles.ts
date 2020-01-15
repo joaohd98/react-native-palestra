@@ -7,5 +7,6 @@ export const ListLectureStyles = {
     font-size: 15px;
     font-weight: bold;
     color: ${Colors.gray};
+    background-color: ${Colors.white};
   `
 };

@@ -7,8 +7,8 @@ export const LectureDetailsPageFooterInformationStyles = {
     align-self: center;
   `,
   Text: styled.Text`
-    font-weight: bold;
-    font-size: 16px;
+    font-weight: 700;
+    font-size: 13px;
     margin-bottom: 10px;
   `,
   Button: styled(ButtonGrayComponent)`

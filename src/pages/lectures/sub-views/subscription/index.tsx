@@ -14,6 +14,7 @@ import {LectureSubscriptionPageInputRole} from "./components/input-role";
 import {SubHeaderDetailsLectureComponent} from "../../../../components/sub-header-details-lecture";
 import {LoadingComponent} from "../../../../components/loading";
 import {ServiceStatus} from "../../../../services/model";
+import {Alert} from "react-native";
 
 export class LectureSubscription extends Component<LectureSubscriptionPageModel.Props, LectureSubscriptionPageModel.State> {
 
@@ -28,7 +29,7 @@ export class LectureSubscription extends Component<LectureSubscriptionPageModel.
 
   componentDidUpdate(prevProps: Readonly<LectureSubscriptionPageModel.Props>, prevState: Readonly<LectureSubscriptionPageModel.State>, snapshot?: any): void {
 
-    const {status, navigation} = this.props;
+    const {status, navigation, response} = this.props;
 
     if(prevProps.status !== ServiceStatus.loading && status === ServiceStatus.loading) {
       navigation?.setParams({
@@ -46,9 +47,22 @@ export class LectureSubscription extends Component<LectureSubscriptionPageModel.
 
       }
 
+      else
+        this.showAlert(status!);
+
     }
 
   }
+
+  showAlert = (status: ServiceStatus) => {
+
+    Alert.alert(
+      'Alert Title',
+      'My Alert Msg',
+      [{text: 'OK'},],
+    );
+
+  };
 
   isFormValid = (): boolean => {
 

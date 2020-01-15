@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import {Colors} from "../../theme/colors";
+import {Platform} from "react-native";
 
 export const InputComponentStyles = {
   View: styled.View`
@@ -17,7 +18,7 @@ export const InputComponentStyles = {
   `,
   Input: styled.TextInput`
     flex: 1;
-    padding: 0px 6px;
+    padding: ${Platform.OS === "ios" ? 5 : 0}px 6px;
     border: 1.5px solid ${(props: {borderColor: string}) => props.borderColor || Colors.black};
   `,
   ViewWarningMessage: styled.View`

@@ -10,12 +10,11 @@ export const SubHeaderDetailsLectureComponentStyles = {
     align-self: flex-start;
     border: 1px solid ${Colors.black};
     background-color: ${Colors.green};
-    font-size: 16px;
     color: ${Colors.black};
   `,
   ViewTextType: styled.Text`
-    font-size: 17px;
-    font-weight: 800;
+    font-size: 15px;
+    font-weight: 600;
     color: ${Colors.black};
   `,
   ViewTitle: styled.View`
@@ -23,8 +22,8 @@ export const SubHeaderDetailsLectureComponentStyles = {
     margin-bottom: 4px;
   `,
   ViewTextTitle: styled.Text`
-    font-size: 19px;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 700;
     color: ${Colors.black};
   `,
   ViewMessage: styled.View`
